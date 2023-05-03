@@ -85,16 +85,63 @@
                 <div class="row">
                   <div class="col-12">
                     <b class="fs-3 me-1">Izzan Khairil Anam</b> 
-                    <a href="#" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
-                      <small class="text-secondary">Edit</small></a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editNameModal" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                      <small class="text-secondary">Edit</small>
+                    </a>
+                    <div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                          <div class="modal-content">
+                          <div class="modal-header">
+                            <div class="row">
+                              <div class="col-12">
+                                <b class="fs-5">Edit Name</b>
+                              </div>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <label class="form-label">
+                              <b>Name</b>
+                            </label>
+                            <input type="text" class="form-control">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary btn-sm rounded-4">Done</button>
+                          </div>
+                          </div>
+                        </div>
+                    </div>
                   </div>
                 </div>
                 <div class="mt-1">
                   <span class="fs-6 me-1">
                     Web Developer
                   </span>
-                  <a href="#" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#editCredentialModal" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
                     <small class="text-secondary">Edit</small></a>
+                    <div class="modal fade" id="editCredentialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                          <b class="fs-5">Edit Profile Credential</b>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <label class="form-label">
+                            <b>Profile Credential</b>
+                            <br>
+									          <small>Credential add credibility to your content</small>
+                          </label>
+                          <input type="text" class="form-control" required>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary btn-sm rounded-4">Save</button>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <div class="mt-2">
                   <div class="fs-6 text-secondary">
@@ -107,8 +154,30 @@
               <div class="text-secondary">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quos accusantium, possimus repudiandae eius iusto voluptatem consequatur sint quisquam nostrum nemo, dicta odio facere magni? Laudantium, possimus. Rem, impedit commodi.
               </div>
-              <a href="#" class="mt-2 link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#editDescModal" class="mt-2 link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
                 <small class="text-secondary">Edit</small></a>
+                <div class="modal fade" id="editDescModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                      <b class="fs-5">Edit Description</b>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <label class="form-label">
+                        <b>Description</b>
+                        <br>
+                        <small>Write a description about yourself</small>
+                      </label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+                      <button type="button" class="btn btn-primary btn-sm rounded-4">Update</button>
+                    </div>
+                    </div>
+                  </div>
+                </div>
             </div>
             <div class="mt-4 mb-5">
               <span class="btn btn-sm text-secondary">0 Answer</span>
@@ -129,7 +198,41 @@
                 Credentials & Highlights
               </div>
               <div class="col-2">
-                  <i class="bi bi-pencil-square btn btn-sm"></i>
+                  <i class="bi bi-pencil-square btn btn-sm" data-bs-toggle="modal" data-bs-target="#editC&HModal"></i>
+              </div>
+              <div class="modal fade" id="editC&HModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                    <b class="fs-5">Edit Credentials & Highlights</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <label class="form-label">
+                      <b>Employment Credential</b><br>
+                      <small>Position</small>
+                    </label>
+                    <input type="text" class="form-control">
+                    
+                    <label class="form-label mt-3">
+                        <b>Education Credential</b><br>
+                        <small>School</small>
+                    </label>
+                    <input type="text" class="form-control">
+
+                    <label class="form-label mt-3">
+                      <b>Location Credential</b><br>
+                      <small>Location</small>
+                    </label>
+                    <input type="text" class="form-control">
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm rounded-4">Save</button>
+                  </div>
+                  </div>
+                </div>
               </div>
             </div>
             <hr>
@@ -148,7 +251,28 @@
                 Knows about
               </div>
               <div class="col-2">
-                  <i class="bi bi-pencil-square btn btn-sm"></i>
+                  <i class="bi bi-pencil-square btn btn-sm" data-bs-toggle="modal" data-bs-target="#addTopic"></i>
+              </div>
+              <div class="modal fade" id="addTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                    <b class="fs-5">Topics you know about</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <label class="form-label">
+                      <b>Topic</b><br>
+                      <small>Topics are how Questify knows what questions to send your way. Be as comprehensive and spesific as possible to get the most relevant questions.</small>
+                    </label>
+                    <input type="text" class="form-control">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm rounded-4">Add</button>
+                  </div>
+                  </div>
+                </div>
               </div>
             </div>
             <hr>

@@ -24,7 +24,7 @@
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse mt-1" id="navigation">
+			<div class="collapse navbar-collapse" id="navigation">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 					<li class="nav-item me-1">
 						<a class="nav-link text-danger" aria-current="page" href="#"><i class="bi bi-house-door"></i> <b>Home</b></a>
@@ -113,26 +113,21 @@
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content">
 							<div class="modal-header">
-								<div class="row">
-									<div class="col-12">
-										<span class="fs-5">Create a Space</span>
-									</div>
-								</div>
+								<span class="fs-5"><b>Create a Space</b></span>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
 								<label class="form-label">
-									Name<br>
+									<b>Name</b><br>
 									<small>This can be changed later</small>
-
 								</label>
-								<input type="text" class="form-control" required max="25" min="5">
+								<input type="text" class="form-control">
 								
 								<label class="form-label mt-3">
-									Description<br>
+									<b>Description</b><br>
 									<small>Include a few keywords to show people what to expect if they join</small>
 								</label>
-								<input type="text" class="form-control" required max="25" min="5">
+								<input type="text" class="form-control">
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
@@ -159,24 +154,28 @@
 	    										<i class="bi bi-question-square me-1"></i>
 	    										<small>Ask</small>
 	    									</a>
-											<div class="modal fade" id="askModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-												<div class="modal-dialog modal-dialog-centered modal-lg">
-													<div class="modal-content">
-													<div class="modal-header">
-														<h1 class="modal-title fs-5" id="exampleModalLabel">Add Question</h1>
-														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-															<input type="text" class="form-control" placeholder="Start your question with 'What', 'How', 'Why', etc." required max="25" min="5">
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
-														<button type="button" class="btn btn-primary btn-sm rounded-4">Add question</button>
-													</div>
-													</div>
+	    								</div>
+										<div class="modal fade" id="askModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered modal-lg">
+												<div class="modal-content">
+												<div class="modal-header">
+													<span class="fs-5"><b>Add Question</b></span>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<label class="form-label">
+														<b>Question</b><br>
+														<small>Start your question with "What","How","Why", etc.</small>
+													</label>
+													<input type="text" class="form-control">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+													<button type="button" class="btn btn-primary btn-sm rounded-4">Add question</button>
+												</div>
 												</div>
 											</div>
-	    								</div>
+										</div>
 	    								<div class="col-1 text-secondary">
 	    									|
 	    								</div>
@@ -194,24 +193,28 @@
 	    										<i class="bi bi-pencil me-1"></i>
 	    										<small>Post</small>
 	    									</a>
-											<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-												<div class="modal-dialog modal-dialog-centered modal-lg">
-													<div class="modal-content">
-													<div class="modal-header">
-														<h1 class="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
-														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-													</div>
-													<div class="modal-body">
-															<input type="text" class="form-control" placeholder="Say something..." required max="255" min="25">
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
-														<button type="button" class="btn btn-primary btn-sm rounded-4">Post</button>
-													</div>
-													</div>
+	    								</div>
+										<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered modal-lg">
+												<div class="modal-content">
+												<div class="modal-header">
+													<span class="fs-5"><b>Create Post</b></span>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+												</div>
+												<div class="modal-body">
+													<label class="form-label">
+														<b>Post</b><br>
+														<small>Say something</small>
+													</label>
+													<input type="text" class="form-control">
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
+													<button type="button" class="btn btn-primary btn-sm rounded-4">Post</button>
+												</div>
 												</div>
 											</div>
-	    								</div>
+										</div>
 	    							</div>
 	    						</div>
 	    					</div>
@@ -238,12 +241,12 @@
 	    					</div>
 	    					<div class="mt-3">
 								<div class="fs-6">
-									<a href="question.html" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>How much of their time do senior software engineers actually spend coding?</b></a>
+									<a href="question.html" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>What is your honest opinion about unit testing?</b></a>
 								</div>
 	    					</div>
 	    					<div class="mt-3">
 								<div class="fs-6">
-									Fred Brooks, who wrote the Mythical Man Month, actually measured this at IBM, and the answer is a horrifying 19%. In my personal experience, I could get up to about 60% by intensely focusing on avoiding meetings and distractions.
+									In a project where speed is important, unit tests help you not step on the same rake. After some kind of bug has been identified that can be recreated with a unit test, such a test is written quickly (the bug has already been identified and can be fixed anyway), this does not take much time, but improves the quality of the code. Well, I write some boundary conditions and check for external side effects right away. In a project where there are a lot of pure functions and strict typing, the total number of tests is much smaller
 								</div>
 	    					</div>
 	    					<div class="mt-3">

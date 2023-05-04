@@ -114,27 +114,38 @@
 					<div class="modal fade" id="createSpaceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content">
-							<div class="modal-header">
-								<span class="fs-5"><b>Create a Space</b></span>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<label class="form-label">
-									<b>Name</b><br>
-									<small>This can be changed later</small>
-								</label>
-								<input type="text" class="form-control">
-								
-								<label class="form-label mt-3">
-									<b>Description</b><br>
-									<small>Include a few keywords to show people what to expect if they join</small>
-								</label>
-								<input type="text" class="form-control">
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
-								<button type="button" class="btn btn-primary btn-sm rounded-4">Create</button>
-							</div>
+								<form onsubmit="return false">
+									<div class="modal-header">
+										<span class="fs-5"><b>Create a Space</b></span>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeSpace"></button>
+									</div>
+									<div class="modal-body">
+										<label class="form-label">
+											<b>Name</b><br>
+											<small>This can be changed later</small>
+										</label>
+										<input type="text" class="form-control" id="space_name">
+										<div class="text-danger" id="invalid_space_name" style="display: none;">
+											<small id="invalid_msg_space_name">
+											</small>
+										</div>	
+										
+										<label class="form-label mt-3">
+											<b>Description</b><br>
+											<small>Include a few keywords to show people what to expect if they join</small>
+										</label>
+										<input type="text" class="form-control" id="space_description">
+										<div class="text-danger" id="invalid_space_description" style="display: none;">
+											<small id="invalid_msg_space_description">
+											</small>
+										</div>	
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelSpace">Cancel</button>
+										<button type="submit" class="btn btn-primary btn-sm rounded-4" id="createSpace">Create</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -148,7 +159,7 @@
 	    						</div>
 	    						<div class="col-10 ms-2">
 	    							<div class="input-group input-group-sm">
-	    								<input type="" class="form-control rounded-4" name="" placeholder="What do you want to ask or share?">
+	    								<input class="form-control rounded-4" name="" placeholder="What do you want to ask or share?" data-bs-toggle="modal" data-bs-target="#askModal">
 	    							</div>
 	    							<div class="row mt-2">
 	    								<div class="col-3 text-center">
@@ -163,7 +174,7 @@
 													<form onsubmit="return false">
 														<div class="modal-header">
 															<span class="fs-5"><b>Add Question</b></span>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeQuestion"></button>
 														</div>
 														<div class="modal-body">
 															<label class="form-label">
@@ -171,10 +182,9 @@
 																<small>Start your question with "What","How","Why", etc.</small>
 															</label>
 															<input type="text" class="form-control" id="question">
-															<div class="text-danger" id="invalid" style="display: none;">
-																<small>
-																Question must be filled.
-															</small>
+															<div class="text-danger" id="invalid_question" style="display: none;">
+																<small id="invalid_msg_question">
+																</small>
 															</div>														  
 														</div>
 														<div class="modal-footer">
@@ -207,21 +217,27 @@
 										<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered modal-lg">
 												<div class="modal-content">
-												<div class="modal-header">
-													<span class="fs-5"><b>Create Post</b></span>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													<label class="form-label">
-														<b>Post</b><br>
-														<small>Say something</small>
-													</label>
-													<input type="text" class="form-control">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
-													<button type="button" class="btn btn-primary btn-sm rounded-4">Post</button>
-												</div>
+													<form onsubmit="return false">
+														<div class="modal-header">
+															<span class="fs-5"><b>Create Post</b></span>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closePost"></button>
+														</div>
+														<div class="modal-body">
+															<label class="form-label">
+																<b>Post</b><br>
+																<small>Say something</small>
+															</label>
+															<input type="text" class="form-control" id="post">
+															<div class="text-danger" id="invalid_post" style="display: none;">
+																<small id="invalid_msg_post">
+																</small>
+															</div>														  
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelPost">Cancel</button>
+															<button type="submit" class="btn btn-primary btn-sm rounded-4" id="btnPost">Post</button>
+														</div>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -444,6 +460,9 @@
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 	<!-- Custom JS -->
-    <script src="asset/js/home.js"></script>
+    <script src="asset/js/question.js"></script>
+	<script src="asset/js/space.js"></script>
+	<script src="asset/js/post.js"></script>
+
 </body>
 </html>

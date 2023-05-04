@@ -16,12 +16,12 @@ btnSignIn.addEventListener('click', function() {
         return
     }
 
-    if(txtEmail.value != 'admin@gmail.com') {
+    if(txtEmail.value != 'izzan@gmail.com') {
         showAlert('Email or password do not match')
         return
     }
 
-    if(txtPassword.value != 'admin123') {
+    if(txtPassword.value != 'password') {
         showAlert('Email or password do not match')
         return
     }

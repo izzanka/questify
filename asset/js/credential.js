@@ -1,6 +1,6 @@
-let positionCredential = document.getElementById('position')
 let school = document.getElementById('school')
-let location = document.getElementById('location')
+let locationCredential = document.getElementById('locationCredential')
+let positionCredential = document.getElementById('positionCredential')
 
 let btnCredential = document.getElementById('btnCredential')
 let cancelCredential = document.getElementById('cancelCredential')
@@ -58,21 +58,21 @@ btnCredential.addEventListener('click', function() {
         invalid_school.style.display = 'none'
     }   
 
-    if(location.value == '' || location.value.length == 0) {
+    if(locationCredential.value == '' || locationCredential.value.length == 0) {
         showAlertLocation('The location field is required')
         return
     }else{
         invalid_location.style.display = 'none'
     }
 
-    if(location.value.length > 25) {
+    if(locationCredential.value.length > 25) {
         showAlertLocation('The location must not be greater than 25 characters')
         return
     }else{
         invalid_location.style.display = 'none'
     }
 
-    if(location.value.length < 5) {
+    if(locationCredential.value.length < 5) {
         showAlertLocation('The location must not be smaller than 10 characters')
         return
     }else{
@@ -89,7 +89,7 @@ cancelCredential.addEventListener('click', function() {
 
     positionCredential.value = '';
     school.value = '';
-    location.value = '';
+    locationCredential.value = '';
 })
 
 closeCredential.addEventListener('click', function() {
@@ -99,7 +99,7 @@ closeCredential.addEventListener('click', function() {
 
     positionCredential.value = '';
     school.value = '';
-    location.value = '';
+    locationCredential.value = '';
 })
 
 function showAlertPosition(message) {

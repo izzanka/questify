@@ -225,34 +225,46 @@
                   <div class="modal-content">
                     <form onsubmit="return false">
 
-                    <div class="modal-header">
-                      <b class="fs-5">Edit Credentials & Highlights</b>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <label class="form-label">
-                        <b>Employment Credential</b><br>
-                        <small>Position</small>
-                      </label>
-                      <input type="text" class="form-control">
-                      
-                      <label class="form-label mt-3">
-                          <b>Education Credential</b><br>
-                          <small>School</small>
-                      </label>
-                      <input type="text" class="form-control">
+                      <div class="modal-header">
+                        <b class="fs-5">Edit Credentials & Highlights</b>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeCredential"></button>
+                      </div>
+                      <div class="modal-body">
+                        <label class="form-label">
+                          <b>Employment Credential</b><br>
+                          <small>Position</small>
+                        </label>
+                        <input type="text" class="form-control" id="position">
+                        <div class="text-danger" id="invalid_position" style="display: none;">
+                          <small id="invalid_msg_position">
+                          </small>
+                      </div>	
+                        
+                        <label class="form-label mt-3">
+                            <b>Education Credential</b><br>
+                            <small>School</small>
+                        </label>
+                        <input type="text" class="form-control" id="school">
+                        <div class="text-danger" id="invalid_school" style="display: none;">
+                          <small id="invalid_msg_school">
+                          </small>
+                      </div>	
 
-                      <label class="form-label mt-3">
-                        <b>Location Credential</b><br>
-                        <small>Location</small>
-                      </label>
-                      <input type="text" class="form-control">
+                        <label class="form-label mt-3">
+                          <b>Location Credential</b><br>
+                          <small>Location</small>
+                        </label>
+                        <input type="text" class="form-control" id="location">
+                        <div class="text-danger" id="invalid_location" style="display: none;">
+                          <small id="invalid_msg_location">
+                          </small>
+                      </div>	
 
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary btn-sm rounded-4">Save</button>
-                    </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelCredential">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-4" id="btnCredential">Save</button>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -332,6 +344,7 @@
     	</div>
     </main>
 
+    <script src="asset/js/credential.js"></script>
     <script src="asset/js/profile.js"></script>
     <script src="asset/js/topic.js"></script>
 

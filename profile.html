@@ -59,7 +59,7 @@
 						</a>
 						<div class="mx-2">
 							<a type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="https://ui-avatars.com/api/?name=IZ"
+								<img id="avatar2"
 								class="rounded-pill" height="30" alt="Profile"loading="lazy"/>
 							</a>
 							<div class="dropdown-menu-end position-absolute">
@@ -81,19 +81,68 @@
           <div class="col-md-7 col-lg-7 col-sm-12 mt-2">
             <div class="row">
               <div class="col-2 mt-2">
-                <img src="https://ui-avatars.com/api/?name=Izzan" class="rounded-circle" width="100%">
+                <img class="rounded-circle" width="100%" id="avatar1">
               </div>
               <div class="col-10">
                 <div class="row">
                   <div class="col-12">
-                    <b class="fs-3 me-1">Izzan Khairil Anam</b> 
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#editNameModal" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
-                      <small class="text-secondary">Edit</small>
+                    <b class="fs-3 me-1" id="user-name">
+
+                    </b> 
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editProfile" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                      <small class="text-secondary">Edit Profile</small>
                     </a>
-                    <div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <form>
+      
+                            <div class="modal-header">
+                              <b class="fs-5">Edit Profile</b>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeCredential"></button>
+                            </div>
+                            <div class="modal-body">
+                              <label class="form-label">
+                                <b>Name</b><br>
+                               
+                              </label>
+                              <input type="text" class="form-control" id="name" name="name">
+                              <div class="text-danger" id="invalid_position" style="display: none;">
+                                <small id="invalid_msg_position">
+                                </small>
+                            </div>	
+                              
+                              <label class="form-label mt-3">
+                                  <b>Profile Credential</b><br>
+                              </label>
+                              <input type="text" class="form-control" id="profile_credential" name="profile_credential">
+                              <div class="text-danger" id="invalid_school" style="display: none;">
+                                <small id="invalid_msg_school">
+                                </small>
+                            </div>	
+      
+                              <label class="form-label mt-3">
+                                <b>Description</b><br>
+                              </label>
+                              <input type="text" class="form-control" id="description" name="description">
+                              <div class="text-danger" id="invalid_location" style="display: none;">
+                                <small id="invalid_msg_location">
+                                </small>
+                            </div>	
+      
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelCredential">Cancel</button>
+                              <button type="submit" class="btn btn-primary btn-sm rounded-4" id="updateProfileBtn">Save</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                           <div class="modal-content">
-                            <form onsubmit="return false">
+                            <form>
                               <div class="modal-header">
                                 <div class="row">
                                   <div class="col-12">
@@ -106,7 +155,7 @@
                                 <label class="form-label">
                                   <b>Name</b>
                                 </label>
-                                <input type="text" class="form-control" id="profileName">
+                                <input type="text" class="form-control" id="name" name="name">
                                 <div class="text-danger" id="invalid_name" style="display: none;">
                                   <small id="invalid_msg_name">
                                   </small>
@@ -114,19 +163,19 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelName">Cancel</button>
-                                <button type="submit" class="btn btn-primary btn-sm rounded-4" id="btnName">Done</button>
+                                <button type="submit" class="btn btn-primary btn-sm rounded-4" id="updateProfileBtn">Done</button>
                               </div>
                             </form>
                           </div>
                         </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="mt-1">
-                  <span class="fs-6 me-1">
-                    Web Developer at Google
+                  <span class="fs-6 me-1" id="credential">
+                    
                   </span>
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#editCredentialModal" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                  <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#editCredentialModal" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
                     <small class="text-secondary">Edit</small></a>
                     <div class="modal fade" id="editCredentialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -142,7 +191,7 @@
                                 <br>
                                 <small>Credential add credibility to your content</small>
                               </label>
-                              <input type="text" class="form-control" id="profileCredential">
+                              <input type="text" class="form-control" id="profile_credential" name="profile_credential">
                               <div class="text-danger" id="invalid_profile_credential" style="display: none;">
                                 <small id="invalid_msg_profile_credential">
                                 </small>
@@ -155,7 +204,7 @@
                           </form>
                           </div>
                       </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mt-2">
                   <div class="fs-6 text-secondary">
@@ -165,10 +214,10 @@
               </div>
             </div>
             <div class="mt-3">
-              <div class="text-secondary">
-                a programmer
+              <div class="text-secondary" id="user-desc">
+               
               </div>
-              <a href="#" data-bs-toggle="modal" data-bs-target="#editDescModal" class="mt-2 link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+              <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#editDescModal" class="mt-2 link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
                 <small class="text-secondary">Edit</small></a>
                 <div class="modal fade" id="editDescModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -197,14 +246,17 @@
                       </form>
                     </div>
                   </div>
-                </div>
+                </div> -->
             </div>
             <div class="mt-4 mb-5">
-              <span class="btn btn-sm text-secondary">0 Answer</span>
-              <span class="btn btn-sm text-secondary">0 Question</span>
-              <span class="btn btn-sm text-secondary">0 Post</span>
-              <span class="btn btn-sm text-secondary">0 Follower</span>
-              <span class="btn btn-sm text-secondary">0 Following</span>
+              <span class="btn btn-sm text-secondary"> Questions</span>
+              <hr>
+              <div id="questionsUser">
+
+              </div>
+
+              <span class="btn btn-sm text-secondary mt-5"> Answers</span>
+              
               <hr>
             </div>
 
@@ -223,7 +275,7 @@
               <div class="modal fade" id="editC&HModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
-                    <form onsubmit="return false">
+                    <form>
 
                       <div class="modal-header">
                         <b class="fs-5">Edit Credentials & Highlights</b>
@@ -234,7 +286,7 @@
                           <b>Employment Credential</b><br>
                           <small>Position</small>
                         </label>
-                        <input type="text" class="form-control" id="positionCredential">
+                        <input type="text" class="form-control" id="employmentCredential" name="employmentCredential">
                         <div class="text-danger" id="invalid_position" style="display: none;">
                           <small id="invalid_msg_position">
                           </small>
@@ -244,7 +296,7 @@
                             <b>Education Credential</b><br>
                             <small>School</small>
                         </label>
-                        <input type="text" class="form-control" id="school">
+                        <input type="text" class="form-control" id="educationCredential" name="educationCredential">
                         <div class="text-danger" id="invalid_school" style="display: none;">
                           <small id="invalid_msg_school">
                           </small>
@@ -254,7 +306,7 @@
                           <b>Location Credential</b><br>
                           <small>Location</small>
                         </label>
-                        <input type="text" class="form-control" id="locationCredential">
+                        <input type="text" class="form-control" id="locationCredential" name="locationCredential">
                         <div class="text-danger" id="invalid_location" style="display: none;">
                           <small id="invalid_msg_location">
                           </small>
@@ -263,7 +315,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelCredential">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-sm rounded-4" id="btnCredential">Save</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-4" id="updateCredentialsBtn">Save</button>
                       </div>
                     </form>
                   </div>
@@ -271,15 +323,17 @@
               </div>
             </div>
             <hr>
-              <i class="bi bi-briefcase me-2"></i> Junior Web Developer 
-            <div class="mt-3">
-              <i class="bi bi-building-check me-2"></i> Software Engineers, Smkn 24 Jakarta 
+            <div>
+              <i class="bi bi-briefcase me-2"></i> <span id="employmentC"></span> 
             </div>
             <div class="mt-3">
-              <i class="bi bi-geo-alt me-2"></i> Lives in Depok
+              <i class="bi bi-building-check me-2"></i> <span id="educationC"></span>
             </div>
             <div class="mt-3">
-              <i class="bi bi-calendar-check me-2"></i> Joined Januari 2023 
+              <i class="bi bi-geo-alt me-2"></i><span id="locationC"></span>
+            </div>
+            <div class="mt-3">
+              <i class="bi bi-calendar-check me-2"></i> Joined <span id="created_at"></span>
             </div>
             <div class="row mt-5">
               <div class="col-10">
@@ -347,6 +401,214 @@
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <script>
+
+      let user_id = sessionStorage.getItem('id')
+      let updateProfileBtn = document.getElementById('updateProfileBtn')
+      let updateCredentialsBtn = document.getElementById('updateCredentialsBtn')
+
+      async function getUserById()
+      {
+        try{
+
+
+        const res = await fetch('http://localhost:3000/api/user/profile', {
+          method: 'POST',
+          body: JSON.stringify({
+              user_id: user_id,
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await res.json()
+
+        if(res.status === 404 || res.status === 500){
+
+          console.log(data.message)
+
+        }else{
+
+          let result = data.data
+
+          let name = result.name
+          let credential = result.profile_credential
+          let description = result.description
+
+          let employment_credential = result.employment_credential
+          let education_credential = result.education_credential
+          let location_credential = result.location_credential
+
+          document.getElementById('name').value = name
+          document.getElementById('profile_credential').value = credential
+          document.getElementById('description').value = description
+
+          document.getElementById('avatar1').src = 'https://ui-avatars.com/api/?name=' + name
+          document.getElementById('avatar2').src = 'https://ui-avatars.com/api/?name=' + name
+
+          //profile
+          document.getElementById('user-name').innerHTML = name
+          document.getElementById('credential').innerHTML = credential ? credential : 'no credential'
+          document.getElementById('user-desc').innerHTML = description ? description : 'no description'
+
+          //credential
+          document.getElementById('employmentCredential').value = employment_credential 
+          document.getElementById('educationCredential').value = education_credential 
+          document.getElementById('locationCredential').value = location_credential 
+
+          document.getElementById('employmentC').innerHTML = employment_credential ? employment_credential : 'no employment credential'
+          document.getElementById('educationC').innerHTML = education_credential ? education_credential : 'no education credential'
+          document.getElementById('locationC').innerHTML = location_credential ? location_credential : 'no location credential'
+          document.getElementById('created_at').innerHTML = new Date(result.created_at._seconds * 1000).toDateString()
+
+        }
+
+        }catch(err)
+        {
+          console.log(err.message)
+        }
+      }
+
+      async function getUserQuestions()
+      {
+        try{
+
+          const res = await fetch('http://localhost:3000/api/questions/user', {
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: user_id,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status === 404 || res.status === 500){
+
+            console.log(data.message)
+
+          }else{
+
+            let result = data.data;
+
+            dataStore = ""
+
+            result.forEach(element => {
+            
+              dataStore += 
+              `
+              <div class="mt-3">
+                <a href="question.html?id=${element.id}" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline link-underline-opacity-75-hover">
+                  ${element.question}
+                </a>
+              </div>
+              `
+            })
+
+            questionsUser.innerHTML = dataStore
+          }
+
+        }catch(err)
+        {
+          console.log(err.message)
+        }
+
+      }
+
+      updateProfileBtn.addEventListener('click', async (e) => {
+
+        e.preventDefault()
+
+        let name = document.getElementById('name').value
+        let profile_credential = document.getElementById('profile_credential').value
+        let description = document.getElementById('description').value
+
+        try{
+
+          const res = await fetch('http://localhost:3000/api/user', {
+            method: 'PUT',
+            body: JSON.stringify({
+              user_id: user_id,
+              name: name,
+              profile_credential: profile_credential,
+              description: description,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status === 404 || res.status === 500){
+
+            console.log(data.message)
+
+          }else{
+            
+            window.location.reload()
+
+          }
+
+        }catch(err)
+        {
+          console.log(err.message)
+        }
+
+      })
+
+      updateCredentialsBtn.addEventListener('click', async (e) => {
+
+        e.preventDefault()
+
+        let employment_credential = document.getElementById('employmentCredential').value 
+        let education_credential = document.getElementById('educationCredential').value 
+        let location_credential = document.getElementById('locationCredential').value 
+
+       
+        try{
+
+          const res = await fetch('http://localhost:3000/api/user/credentials', {
+            method: 'PUT',
+            body: JSON.stringify({
+              user_id: user_id,
+              employment_credential: employment_credential,
+              education_credential: education_credential,
+              location_credential: location_credential,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status === 404 || res.status === 500){
+
+            console.log(data.message)
+
+          }else{
+            
+            window.location.reload()
+
+          }
+
+        }catch(err)
+        {
+          console.log(err.message)
+        }
+
+        })
+
+      getUserById()
+      getUserQuestions()
+
+
+    </script>
 
     <script src="asset/js/credential.js"></script>
     <script src="asset/js/profile.js"></script>

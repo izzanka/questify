@@ -47,7 +47,7 @@
 						</li>
 						<hr>
 						<li class="nav-item">
-							<a class="btn btn-danger btn-sm w-100 rounded-4" aria-current="page" href="signin.html">Logout</a>
+							<a class="btn btn-danger btn-sm w-100 rounded-4" aria-current="page" id="btnLogout2" href="#">Logout</a>
 						</li>
 					</div>
 					<div class="notif-profile-d align-items-center">
@@ -56,13 +56,13 @@
 						</a>
 						<div class="mx-2">
 							<a type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="https://ui-avatars.com/api/?name=IZ"
+								<img id="avatar2"
 								class="rounded-pill" height="30" alt="Profile"loading="lazy"/>
 							</a>
 							<div class="dropdown-menu-end position-absolute">
 								<ul class="dropdown-menu position-relative">
 									<li><a class="dropdown-item" href="profile.html">Profile</a></li>
-									<li><a class="dropdown-item" href="signin.html">Logout</a></li>
+									<li><a class="dropdown-item" id="btnLogout" href="#">Logout</a></li>
 								</ul>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 	    					<div class="row">
 	    						<div class="col-1 text-end">
 	    							<a href="profile.html">
-	    								<img src="https://ui-avatars.com/api/?name=Izzan" class="rounded-circle" width="35px">
+	    								<img class="rounded-circle" width="35px" id="avatar1">
 	    							</a>
 	    						</div>
 	    						<div class="col-10 ms-2">
@@ -171,7 +171,7 @@
 										<div class="modal fade" id="askModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered modal-lg">
 												<div class="modal-content">
-													<form onsubmit="return false">
+													<form>
 														<div class="modal-header">
 															<span class="fs-5"><b>Add Question</b></span>
 															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeQuestion"></button>
@@ -181,7 +181,7 @@
 																<b>Question</b><br>
 																<small>Start your question with "What","How","Why", etc.</small>
 															</label>
-															<input type="text" class="form-control" id="question">
+															<input type="text" class="form-control" id="question" name="question">
 															<div class="text-danger" id="invalid_question" style="display: none;">
 																<small id="invalid_msg_question">
 																</small>
@@ -189,7 +189,7 @@
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelQuestion">Cancel</button>
-															<input type="submit" class="btn btn-primary btn-sm rounded-4" id="addQuestion" value="Submit">
+															<input type="submit" class="btn btn-primary btn-sm rounded-4" id="btnAddQuestion" value="Submit">
 														</div>
 													</form>
 													
@@ -245,194 +245,13 @@
 	    						</div>
 	    					</div>
 	    				</div>
-	    			</div>	
-
-	    			<div class="card mt-3 mb-3 rounded-0">
-	    				<div class="card-body">
-	    					<div class="row">
-	    						<div class="col-1 mt-2 text-end">
-	    							<img src="https://ui-avatars.com/api/?name=Ahmad" class="rounded-circle" width="35px">
-	    						</div>
-	    						<div class="col-9">
-	    							<small class="ms-2"><b>Ahmad Maulana</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
-	    							<div class="row">
-	    								<div class="col-12 ms-2">
-	    									<small class="text-secondary">Android Developer since 2029  &#x2022;  Mar 28</small>  
-	    								</div>
-	    							</div>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
-	    						</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									<a href="question.html" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>What is your honest opinion about unit testing?</b></a>
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									In a project where speed is important, unit tests help you not step on the same rake. After some kind of bug has been identified that can be recreated with a unit test, such a test is written quickly (the bug has already been identified and can be fixed anyway), this does not take much time, but improves the quality of the code. Well, I write some boundary conditions and check for external side effects right away. In a project where there are a lot of pure functions and strict typing, the total number of tests is much smaller
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-	    						<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
-	    					</div>
-	    					<div class="row mt-3">
-	    						<div class="col-10">
-	    							<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
-	    						</div>
-	    							    						
-	    					</div>
-	    				</div>
 	    			</div>
 
-					<div class="card mt-3 mb-3 rounded-0">
-	    				<div class="card-body">
-	    					<div class="row">
-	    						<div class="col-1 mt-2 text-end">
-	    							<img src="https://ui-avatars.com/api/?name=U1" class="rounded-circle" width="35px">
-	    						</div>
-	    						<div class="col-9">
-	    							<small class="ms-2"><b>User1</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
-	    							<div class="row">
-	    								<div class="col-12 ms-2">
-	    									<small class="text-secondary">Web Developer since 2000  &#x2022;  Mar 27</small>  
-	    								</div>
-	    							</div>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
-	    						</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									<a href="question.html" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>What is your honest opinion about unit testing?</b></a>
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									The two places I worked recently that had good unit tests were places where people could make big changes relatively fearlessly. The other places…not so much. Unit testing works.
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-	    						<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
-	    					</div>
-	    					<div class="row mt-3">
-	    						<div class="col-10">
-	    							<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
-	    						</div>
-	    							    						
-	    					</div>
-	    				</div>
-	    			</div>
+					<div id="questionsWithAnswer">
 
-					<div class="card mt-3 mb-3 rounded-0">
-	    				<div class="card-body">
-	    					<div class="row">
-	    						<div class="col-1 mt-2 text-end">
-	    							<img src="https://ui-avatars.com/api/?name=U2" class="rounded-circle" width="35px">
-	    						</div>
-	    						<div class="col-9">
-	    							<small class="ms-2"><b>User2</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
-	    							<div class="row">
-	    								<div class="col-12 ms-2">
-	    									<small class="text-secondary">QA Tester since 1999  &#x2022;  Mar 27</small>  
-	    								</div>
-	    							</div>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
-	    						</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									<a href="question.html" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>What is your honest opinion about unit testing?</b></a>
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									The first version of our service didn’t have any unit tests. Every time we wrote code, we had to start the service and manually send requests to it. If there was an error, we had to start the service all over again, which took forever!
-									Then Yvonne came in and revolutionized everything. She rearchitected the entire service, and every function had a unit test! Now for a lot of code, we can just run the unit tests, which is way faster than testing manually.
-									I wrote three paragraphs in her peer feedback about this. I think she did well because she became a tech lead a few months later
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-	    						<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
-	    					</div>
-	    					<div class="row mt-3">
-	    						<div class="col-10">
-	    							<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
-	    						</div>
-	    							    						
-	    					</div>
-	    				</div>
-	    			</div>
+					</div>
 
-					<div class="card mt-3 mb-3 rounded-0">
-	    				<div class="card-body">
-	    					<div class="row">
-	    						<div class="col-1 mt-2 text-end">
-	    							<img src="https://ui-avatars.com/api/?name=U3" class="rounded-circle" width="35px">
-	    						</div>
-	    						<div class="col-9">
-	    							<small class="ms-2"><b>User3</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
-	    							<div class="row">
-	    								<div class="col-12 ms-2">
-	    									<small class="text-secondary">QA Tester since 1999  &#x2022;  Mar 27</small>  
-	    								</div>
-	    							</div>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
-	    						</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									<a href="question.html" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>What is your honest opinion about unit testing?</b></a>
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-								<div class="fs-6">
-									While unit tests are good to catch some kinds of small logical errors (one off errors, corner cases, etc.), there are tons of errors they do not catch. One of my pet peeves about unit tests is that sometimes developers use them to get a false sense of confidence that their code functions correctly, as opposed to actually proving that the code is correct using loop invariants, induction and other formal techniques. It works for simple units of code but quickly breaks down when multiple threads are involved or other situations where the number of possibilities is simply too large to enumerate.
-								</div>
-	    					</div>
-	    					<div class="mt-3">
-	    						<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
-	    					</div>
-	    					<div class="row mt-3">
-	    						<div class="col-10">
-	    							<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
-	    						</div>
-	    						<div class="col-2 text-end">
-	    							<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
-	    						</div>
-	    							    						
-	    					</div>
-	    				</div>
-	    			</div>
-
+					
 
 	    			
 	    		</div>
@@ -459,10 +278,160 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
+	<script>
+		
+		let user_id = sessionStorage.getItem('id')
+
+		document.getElementById('avatar1').src = 'https://ui-avatars.com/api/?name=' + sessionStorage.getItem('name')
+		document.getElementById('avatar2').src = 'https://ui-avatars.com/api/?name=' + sessionStorage.getItem('name')
+
+
+		let questionsWithAnswer = document.getElementById('questionsWithAnswer')
+		let btnAddQuestion = document.getElementById('btnAddQuestion')
+		let invalid_question = document.getElementById('invalid_question')
+		let invalid_msg_question = document.getElementById('invalid_msg_question')
+		let btnLogout = document.getElementById('btnLogout')
+
+		function showAlert(message) {
+			invalid_question.style.display = 'block'
+			invalid_msg_question.innerHTML = message
+		}
+		
+		btnAddQuestion.addEventListener('click', async (e) => {
+    
+			e.preventDefault()
+
+			try{
+				const res = await fetch('http://localhost:3000/api/questions', {
+					method: 'POST',
+					body: JSON.stringify({
+						question: question.value,
+						user_id: user_id
+					}),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+
+				const data = await res.json()
+				
+				console.log(data)
+
+				if(res.status === 401 || res.status === 403 || res.status === 500){
+					showAlert(data.message)
+				}else{
+					
+					location.href="question.html?id=" + data.data.id
+				}
+
+			}catch(err)
+			{
+				console.log(err.message)
+			}
+		})
+
+		btnLogout.addEventListener('click', async (e) => {
+
+			e.preventDefault()
+
+			sessionStorage.clear()
+
+			window.location.href = "signin.html"
+
+		});
+
+		async function getAllQuestionsWithAnswer()
+		{
+			try{
+
+				const res = await fetch('http://localhost:3000/api/questions/answer')
+
+				const data = await res.json()
+
+				if(res.status === 500){
+
+					console.log(data.message)
+
+				}else{
+
+					let result = data.data
+
+					dataStore = ""
+
+					result.forEach(element => {
+
+						dataStore += 
+
+						`
+						<div class="card mt-3 mb-3 rounded-0">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-1 mt-2 text-end">
+											<img src="https://ui-avatars.com/api/?name=Ahmad" class="rounded-circle" width="35px">
+										</div>
+										<div class="col-9">
+											<small class="ms-2"><b>Ahmad Maulana</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
+											<div class="row">
+												<div class="col-12 ms-2">
+													<small class="text-secondary">Android Developer since 2029  &#x2022;  Mar 28</small>  
+												</div>
+											</div>
+										</div>
+										<div class="col-2 text-end">
+											<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
+										</div>
+									</div>
+									<div class="mt-3">
+										<div class="fs-6">
+											<a href="question.html?id=${element.id}" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>${element.question}</b></a>
+										</div>
+									</div>
+									<div class="mt-3">
+										<div class="fs-6">
+											
+										</div>
+									</div>
+									<div class="mt-3">
+										<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
+									</div>
+									<div class="row mt-3">
+										<div class="col-10">
+											<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
+											<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
+											<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
+											<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
+										</div>
+										<div class="col-2 text-end">
+											<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
+										</div>
+																		
+									</div>
+								</div>
+							</div>
+						`
+					})
+
+					questionsWithAnswer.innerHTML = dataStore
+
+				}
+			}
+			
+			catch(err)
+			{
+				console.log(err.message)
+			}
+		}
+
+		getAllQuestionsWithAnswer()
+
+	</script>
+
 	<!-- Custom JS -->
     <script src="asset/js/question.js"></script>
 	<script src="asset/js/space.js"></script>
 	<script src="asset/js/post.js"></script>
+
+	
 
 </body>
 </html>

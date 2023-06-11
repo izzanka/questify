@@ -2,8 +2,7 @@ let question = document.getElementById('question')
 let addQuestion = document.getElementById('addQuestion')
 let cancelQuestion = document.getElementById('cancelQuestion')
 let closeQuestion = document.getElementById('closeQuestion')
-let invalid_question = document.getElementById('invalid_question')
-let invalid_msg_question = document.getElementById('invalid_msg_question')
+
 
 addQuestion.addEventListener('click', function() {
 
@@ -35,7 +34,5 @@ closeQuestion.addEventListener('click', function() {
     question.value = '';
 })
 
-function showAlert(message) {
-    invalid_question.style.display = 'block'
-    invalid_msg_question.innerHTML = message
-}
+
+

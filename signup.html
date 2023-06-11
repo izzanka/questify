@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="wrapper col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-        <form class="login-form bg-white p-5" onsubmit="return false">
+        <form class="login-form bg-white p-5">
             <div class="mb-4">
                 <h1 class="text-dark fw-bolder fs-4">SIGN UP</h1>
                 <p>Please enter your data to create account</p>
@@ -32,22 +32,22 @@
             </div>
             <div class="mb-3">
                 <label for="txtName" class="form-label ">Name</label>
-                <input type="text" class="form-control" id="txtName">
+                <input type="text" class="form-control" id="txtName" name="name">
             </div>
             <div class="mb-3">
                 <label for="txtEmail" class="form-label ">Email</label>
-                <input type="email" class="form-control" id="txtEmail">
+                <input type="email" class="form-control" id="txtEmail" name="email">
             </div>
             <div class="mb-3">
                 <label for="txtPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="txtPassword">
+                <input type="password" class="form-control" id="txtPassword" name="password">
             </div>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control" id="txtConfirmPassword">
-            </div>
+            </div> -->
             <input type="submit" class="btn btn-danger w-100 mb-3" value="Sign Up" id="btnSignUp">
-            <div class="row m-0 mb-2 position-relative align-items-center">
+            <!-- <div class="row m-0 mb-2 position-relative align-items-center">
                 <hr class="col-5">
                 <div class="col-2 text-center text-muted mb-3">OR</div>
                 <hr class="col-5">
@@ -55,7 +55,7 @@
             <div class="row m-0 mb-4 justify-content-between">
                 <button class="btn btn-outline-danger w-49"><span class="bi-google" id="btnSignGoogle"></span></button>
                 <button class="btn btn-outline-primary w-49"><span class="bi-facebook" id="btnSignFacebook"></span></button>
-            </div>
+            </div> -->
             <div class="row text-center">
                 <p>Already have an account? <a href="signin.html" class="text-decoration-none">Sign In</a></p>
             </div>
@@ -68,5 +68,6 @@
 
     <!-- Custom JS -->
     <script src="asset/js/signup.js"></script>
+
 </body>
 </html>

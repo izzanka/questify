@@ -1,6 +1,7 @@
 # Output
 node_modules/
 build
+serviceAccountKey.json
 
 # dotenv Environment Variables
 .env

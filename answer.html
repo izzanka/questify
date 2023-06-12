@@ -158,9 +158,9 @@
 
 				const data = await res.json()
 
-				if(res.status === 404 || res.status === 500){
+				if(res.status != 200){
 
-					console.log(data.message)
+					alert(data.message)
 
 				}else{
 					
@@ -196,6 +196,7 @@
 
 			}catch(err)
 			{
+				alert('Something wrong. please try again later!')
 				console.log(err.message)
 			}
 		}

@@ -125,8 +125,8 @@
 
 			const data = await res.json()
 
-			if(res.status === 404 || res.status === 500){
-				console.log(data.message)
+			if(res.status != 200){
+				alert(data.message)
 			}else{
 
 				dataStore = 
@@ -282,14 +282,15 @@
 
 						const data = await res.json()
 
-						if(res.status === 404 || res.status === 500){
-							console.log(data.message)
+						if(res.status != 200){
+							alert(data.message)
 						}else{
 							location.href="question.html?id=" + idQuestion.value
 						}
 						
 
 					} catch (error) {
+						alert('Something wrong. please try again later!')
 						console.log(error.message)
 					}
 
@@ -313,14 +314,15 @@
 
 						const data = await res.json()
 
-						if(res.status === 404 || res.status === 500){
-							console.log(data.message)
+						if(res.status != 200){
+							alert(data.message)
 						}else{
 							location.href= "home.html"
 						}
 						
 
 					} catch (error) {
+						alert('Something wrong. please try again later!')
 						console.log(error.message)
 					}
 
@@ -350,14 +352,15 @@
 
 						const data = await res.json()
 
-						if(res.status === 404 || res.status === 500){
-							console.log(data.message)
+						if(res.status != 200){
+							alert(data.message)
 						}else{
 							window.location.reload()
 						}
 						
 
 					} catch (error) {
+						alert('Something wrong. please try again later!')
 						console.log(error.message)
 					}
 
@@ -368,6 +371,7 @@
 		
 		catch(err)
 		{
+			alert('Something wrong. please try again later!')
 			console.log(err.message)
 		}
 	}
@@ -387,9 +391,9 @@
 			})
 			const data = await res.json()
 
-			if(res.status === 404 || res.status === 500){
+			if(res.status != 200){
 
-				console.log(data.message)
+				alert(data.message)
 
 			}else{
 
@@ -423,6 +427,7 @@
 
 		}catch(err)
 		{
+			alert('Something wrong. please try again later!')
 			console.log(err.message)
 		}
 

@@ -249,13 +249,13 @@
                 </div> -->
             </div>
             <div class="mt-4 mb-5">
-              <span class="btn btn-sm text-secondary"> Questions</span>
+              <span class="btn btn-sm text-secondary">List of Questions Asked</span>
               <hr>
               <div id="questionsUser">
 
               </div>
 
-              <span class="btn btn-sm text-secondary mt-5"> Answers</span>
+              <span class="btn btn-sm text-secondary mt-5">List of Questions Answered</span>
               <hr>
               <div id="answersUser">
 
@@ -428,10 +428,10 @@
 
         const data = await res.json()
 
-        if(res.status === 404 || res.status === 500){
+        if(res.status != 200){
 
-          console.log(data.message)
-
+          alert(data.message)
+          
         }else{
 
           let result = data.data
@@ -453,23 +453,24 @@
 
           //profile
           document.getElementById('user-name').innerHTML = name
-          document.getElementById('credential').innerHTML = credential ? credential : 'no credential'
-          document.getElementById('user-desc').innerHTML = description ? description : 'no description'
+          document.getElementById('credential').innerHTML = credential ? credential : '-'
+          document.getElementById('user-desc').innerHTML = description ? description : '-'
 
           //credential
           document.getElementById('employmentCredential').value = employment_credential 
           document.getElementById('educationCredential').value = education_credential 
           document.getElementById('locationCredential').value = location_credential 
 
-          document.getElementById('employmentC').innerHTML = employment_credential ? employment_credential : 'no employment credential'
-          document.getElementById('educationC').innerHTML = education_credential ? education_credential : 'no education credential'
-          document.getElementById('locationC').innerHTML = location_credential ? location_credential : 'no location credential'
+          document.getElementById('employmentC').innerHTML = employment_credential ? employment_credential : '-'
+          document.getElementById('educationC').innerHTML = education_credential ? education_credential : '-'
+          document.getElementById('locationC').innerHTML = location_credential ? location_credential : '-'
           document.getElementById('created_at').innerHTML = new Date(result.created_at._seconds * 1000).toDateString()
 
         }
 
         }catch(err)
         {
+          alert('Something wrong. please try again later!')
           console.log(err.message)
         }
       }
@@ -490,9 +491,9 @@
 
           const data = await res.json()
 
-          if(res.status === 404 || res.status === 500){
+          if(res.status != 200){
 
-            console.log(data.message)
+            alert(data.message)
 
           }else{
 
@@ -517,6 +518,7 @@
 
         }catch(err)
         {
+          alert('Something wrong. please try again later!')
           console.log(err.message)
         }
 
@@ -538,9 +540,9 @@
 
           const data = await res.json()
 
-          if(res.status === 404 || res.status === 500){
+          if(res.status != 200){
 
-            console.log(data.message)
+            alert(data.message)
 
           }else{
 
@@ -566,6 +568,7 @@
 
         }catch(err)
         {
+          alert('Something wrong. please try again later!')
           console.log(err.message)
         }
 
@@ -596,9 +599,9 @@
 
           const data = await res.json()
 
-          if(res.status === 404 || res.status === 500){
+          if(res.status != 200){
 
-            console.log(data.message)
+            alert(data.message)
 
           }else{
             
@@ -608,6 +611,7 @@
 
         }catch(err)
         {
+          alert('Something wrong. try again later!')
           console.log(err.message)
         }
 
@@ -639,9 +643,9 @@
 
           const data = await res.json()
 
-          if(res.status === 404 || res.status === 500){
+          if(res.status != 200){
 
-            console.log(data.message)
+            alert(data.message)
 
           }else{
             
@@ -651,6 +655,7 @@
 
         }catch(err)
         {
+          alert('Something wrong. please try again later!')
           console.log(err.message)
         }
 

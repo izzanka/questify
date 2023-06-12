@@ -67,8 +67,10 @@ form.addEventListener('submit', async (e) => {
 
         const data = await res.json()
 
-        if(res.status === 401 || res.status === 403 || res.status === 500){
+        if(res.status != 200){
+
             showAlert(data.message)
+
         }else{
 
             sessionStorage.setItem('id', data.data.id)
@@ -80,6 +82,7 @@ form.addEventListener('submit', async (e) => {
 
     }catch(err)
     {
+        alert('Something wrong. please try again later!')
         console.log(err.message)
     }
 })

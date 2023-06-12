@@ -179,7 +179,7 @@
 						</div>
 						</div>
 						<small>
-							<a href="question.html" target="_blank" class="text-decoration-none text-secondary">
+							<a href="question.html?id=${element.id}" target="_blank" class="text-decoration-none text-secondary">
 								<b>0 answers</b>                                
 							</a>
 						</small>
@@ -187,8 +187,6 @@
 							&#x2022; 
 							Created at ${new Date(element.created_at._seconds * 1000).toDateString()}
 						</small>
-						
-						
 						<hr>
 						`
 					})

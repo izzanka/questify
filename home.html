@@ -162,7 +162,7 @@
 	    								<input class="form-control rounded-4" name="" placeholder="What do you want to ask or share?" data-bs-toggle="modal" data-bs-target="#askModal">
 	    							</div>
 	    							<div class="row mt-2">
-	    								<div class="col-3 text-center">
+	    								<div class="col-5 text-center">
 	    									<a href="#" class="text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#askModal">
 	    										<i class="bi bi-question-square me-1"></i>
 	    										<small>Ask</small>
@@ -199,21 +199,13 @@
 	    								<div class="col-1 text-secondary">
 	    									|
 	    								</div>
-	    								<div class="col-4 text-center">
-	    									<a href="answer.html" class="text-decoration-none text-secondary" target="_blank">
+	    								<div class="col-5 text-center">
+	    									<a href="answer.html" class="text-decoration-none text-secondary">
 	    										<i class="bi bi-pencil-square me-1"></i>
 	    										<small>Answer</small>
 	    									</a>
 	    								</div>
-	    								<div class="col-1 text-secondary">
-	    									|
-	    								</div>
-	    								<div class="col-3 text-center">
-	    									<a href="#" class="text-decoration-none text-secondary" data-bs-toggle="modal" data-bs-target="#postModal">
-	    										<i class="bi bi-pencil me-1"></i>
-	    										<small>Post</small>
-	    									</a>
-	    								</div>
+	    				
 										<div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered modal-lg">
 												<div class="modal-content">
@@ -250,10 +242,6 @@
 					<div id="questionsWithAnswer">
 
 					</div>
-
-					
-
-	    			
 	    		</div>
 
 	    		<div class="col-md-3 d-none d-sm-block mb-4">
@@ -281,6 +269,10 @@
 	<script>
 		
 		let user_id = sessionStorage.getItem('id')
+
+		if(user_id == null){
+			window.location.href = "signin.html"
+		}
 
 		document.getElementById('avatar1').src = 'https://ui-avatars.com/api/?name=' + sessionStorage.getItem('name')
 		document.getElementById('avatar2').src = 'https://ui-avatars.com/api/?name=' + sessionStorage.getItem('name')
@@ -344,7 +336,15 @@
 		{
 			try{
 
-				const res = await fetch('http://localhost:3000/api/questions/answer')
+				const res = await fetch('http://localhost:3000/api/questions/answer', {
+					method: 'POST',
+					body: JSON.stringify({
+						user_id: user_id
+					}),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
 
 				const data = await res.json()
 
@@ -360,54 +360,56 @@
 
 					result.forEach(element => {
 
+
 						dataStore += 
 
 						`
 						<div class="card mt-3 mb-3 rounded-0">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-1 mt-2 text-end">
-											<img src="https://ui-avatars.com/api/?name=Ahmad" class="rounded-circle" width="35px">
-										</div>
-										<div class="col-9">
-											<small class="ms-2"><b>Ahmad Maulana</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
-											<div class="row">
-												<div class="col-12 ms-2">
-													<small class="text-secondary">Android Developer since 2029  &#x2022;  Mar 28</small>  
-												</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-1 mt-2 text-end">
+										<img src="https://ui-avatars.com/api/?name=${element.user_name}" class="rounded-circle" width="35px">
+									</div>
+									<div class="col-9">
+										<small class="ms-2"><b>${element.user_name}</b>  &#x2022;  <a href="#" class="text-decoration-none text-primary">Follow</a></small>
+										<div class="row">
+											<div class="col-12 ms-2">
+												<small class="text-secondary">${element.user_profile_credential}  &#x2022;  ${new Date(element.created_at._seconds * 1000).toDateString()}</small>  
 											</div>
 										</div>
-										<div class="col-2 text-end">
-											<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
-										</div>
 									</div>
-									<div class="mt-3">
-										<div class="fs-6">
-											<a href="question.html?id=${element.id}" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>${element.question}</b></a>
-										</div>
-									</div>
-									<div class="mt-3">
-										<div class="fs-6">
-											
-										</div>
-									</div>
-									<div class="mt-3">
-										<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
-									</div>
-									<div class="row mt-3">
-										<div class="col-10">
-											<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
-											<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
-											<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
-											<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
-										</div>
-										<div class="col-2 text-end">
-											<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
-										</div>
-																		
+									<div class="col-2 text-end">
+										<a href="" class="btn btn-sm text-decoration-none text-secondary"><i class="bi bi-x-lg"></i></a>
 									</div>
 								</div>
+								<div class="mt-3">
+									<div class="fs-6">
+										<a href="question.html?id=${element.question_id}" class="text-dark link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover"><b>${element.question_question}</b></a>
+									</div>
+								</div>
+								<div class="mt-3">
+									<div class="fs-6">
+										${element.answer}
+									</div>
+								</div>
+								<div class="mt-3">
+									<small><a href="" class="text-decoration-none text-secondary">135 views</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 35 upvotes</a> &#x2022; <a href="" class="text-decoration-none text-secondary">View 5 shares</a></small>
+								</div>
+								<div class="row mt-3">
+									<div class="col-10">
+										<button class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-arrow-up-circle"></i> Upvote &#x2022; 35</button>
+										<button class="btn btn-md text-secondary"><i class="bi bi-arrow-down-circle"></i></button>
+										<button class="btn btn-md text-secondary"><i class="bi bi-chat"></i> 10</button>
+										<button class="btn btn-md text-secondary"><i class="bi bi-share"></i> 5</button>
+									</div>
+									<div class="col-2 text-end">
+										<button class="btn btn-md text-secondary"><i class="bi bi-three-dots"></i></button>
+									</div>
+																	
+								</div>
 							</div>
+						</div>
+						
 						`
 					})
 

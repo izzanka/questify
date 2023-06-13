@@ -571,27 +571,38 @@ app.put('/api/question', async (req, res) => {
     let id = req.body.id
     let req_question = req.body.question
 
-    let update = {
-      question: req_question,
-      question_slug: slugify(req_question),
-      updated_at: Timestamp.now()
-    }
+    if(!req_question){
 
-    const question1 = db.collection('questions').doc(id)
-
-    if(question1.empty){
-      res.status(404).json({
+      res.status(500).json({
         success: false,
-        message: "Question not found."
+        message: "Question field is required."
       })
+
+    }else {
+
+      let update = {
+        question: req_question,
+        question_slug: slugify(req_question),
+        updated_at: Timestamp.now()
+      }
+  
+      const question1 = db.collection('questions').doc(id)
+  
+      if(question1.empty){
+        res.status(404).json({
+          success: false,
+          message: "Question not found."
+        })
+      }
+  
+      await question1.update(update)
+  
+      res.status(200).json({
+        success: true,
+        message: "Update question success.",
+      })
+      
     }
-
-    await question1.update(update)
-
-    res.status(200).json({
-      success: true,
-      message: "Update question success.",
-    })
     
   }catch(err){
 

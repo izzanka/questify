@@ -110,7 +110,9 @@
 	let user_id = sessionStorage.getItem('id')
 	let name = sessionStorage.getItem('name')
 	let user_profile_credential = sessionStorage.getItem('profile_credential')
-
+	
+	console.log(user_profile_credential)
+	
 	let question_id = url.searchParams.get("id");
 
 	let question = document.getElementById('question')
@@ -285,6 +287,7 @@
 						if(res.status != 200){
 							alert(data.message)
 						}else{
+							alert(data.message)
 							location.href="question.html?id=" + idQuestion.value
 						}
 						
@@ -317,6 +320,7 @@
 						if(res.status != 200){
 							alert(data.message)
 						}else{
+							alert(data.message)
 							location.href= "home.html"
 						}
 						
@@ -355,6 +359,7 @@
 						if(res.status != 200){
 							alert(data.message)
 						}else{
+							alert(data.message)
 							window.location.reload()
 						}
 						

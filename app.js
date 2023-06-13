@@ -60,18 +60,14 @@ app.post('/api/register', async (req, res) => {
 
         const data = {
           name: req_name,
-          name_slug: slugify(req_name),
           email: req_email,
           password: bcrypt.hashSync(req_password, 8),
-          role: 'user',
           description: '',
           profile_credential: '',
           employment_credential: '',
           education_credential: '',
           location_credential: '',
-          image: '',
           created_at: Timestamp.now(),
-          updated_at: null
         }
   
         await db.collection('users').add(data).then(function(docRef){
@@ -134,16 +130,13 @@ app.post('/api/login', async (req, res) => {
               let data = {
                 id: doc.id,
                 name: doc.data().name,
-                name_slug: doc.data().name_slug,
                 email: doc.data().email,
-                role: doc.data().role,
                 profile_credential: doc.data().profile_credential,
                 employment_credential: doc.data().employment_credential,
                 education_credential: doc.data().education_credential,
                 location_credential: doc.data().location_credential,
                 description: doc.data().description,
                 created_at: doc.data().created_at,
-                updated_at: doc.data().updated_at
               }
     
               res.status(200).json({
@@ -210,9 +203,7 @@ app.post('/api/questions', async (req, res) => {
   
         const data = {
           question: req_question,
-          question_slug: slugify(req_question),
           created_at: Timestamp.now(),
-          updated_at: null,
           user_id: user_id
         }
     
@@ -269,9 +260,7 @@ app.post('/api/questions/limit/:limit', async (req, res) => {
         const data = {
           id: doc.id,
           question: doc.data().question,
-          question_slug: doc.data().question_slug,
           created_at: doc.data().created_at,
-          updated_at: doc.data().updated_at,
         }
 
         questionsArray.push(data)
@@ -328,9 +317,7 @@ app.get('/api/question/:id', async (req, res) => {
           user_id: doc.data().user_id,
           user_name: doc.data().user_name,
           user_profile_credential: doc.data().user_profile_credential,
-          image: doc.data().image,
           created_at: doc.data().created_at,
-          updated_at: doc.data().updated_at,
         }
   
         answersArray.push(data)
@@ -341,9 +328,7 @@ app.get('/api/question/:id', async (req, res) => {
         id: question.id,
         user_id: question.data().user_id,
         question: question.data().question,
-        question_slug: question.data().question_slug,
         created_at: question.data().created_at,
-        updated_at: question.data().updated_at,
         answers: answersArray ?? null
       }
 
@@ -387,7 +372,7 @@ app.post('/api/questions/user', async (req, res) => {
 
       if(question.empty){
 
-        res.status(404).json({
+        res.status(200).json({
           success: true,
           message: "This user doesnt have any questions.",
           data: null,
@@ -402,9 +387,7 @@ app.post('/api/questions/user', async (req, res) => {
             id: doc.id,
             user_id: doc.data().user_id,
             question: doc.data().question,
-            question_slug: doc.data().question_slug,
             created_at: doc.data().created_at,
-            updated_at: doc.data().updated_at,
           }
     
           questionsArray.push(data)
@@ -484,10 +467,8 @@ app.post('/api/questions/answer', async (req, res) => {
           user_profile_credential: doc.data().user_profile_credential,
           question_id: doc.data().question_id,
           question_question: doc.data().question_question,
-          question_question_slug: doc.data().question_question_slug,
           question_user_id: doc.data().user_id,
           created_at: doc.data().created_at,
-          updated_at: doc.data().updated_at,
         }
 
         answersArray.push(data)
@@ -535,10 +516,8 @@ app.post('/api/user/answers', async (req, res) => {
           user_profile_credential: doc.data().user_profile_credential,
           question_id: doc.data().question_id,
           question_question: doc.data().question_question,
-          question_question_slug: doc.data().question_question_slug,
           question_user_id: doc.data().user_id,
           created_at: doc.data().created_at,
-          updated_at: doc.data().updated_at,
         }
 
         answersArray.push(data)
@@ -582,8 +561,6 @@ app.put('/api/question', async (req, res) => {
 
       let update = {
         question: req_question,
-        question_slug: slugify(req_question),
-        updated_at: Timestamp.now()
       }
   
       const question1 = db.collection('questions').doc(id)
@@ -690,15 +667,12 @@ app.post('/api/question/answer', async (req, res) => {
 
           const data = {
             answer: req_answer,
-            image: null,
             created_at: Timestamp.now(),
-            updated_at: null,
             user_id: user_id,
             user_name: user_name,
             user_profile_credential: user_profile_credential,
             question_id: dataQuestion.id,
             question_question: dataQuestion.data().question,
-            question_question_slug: dataQuestion.data().question_slug,
             question_user_id: dataQuestion.data().user_id
           }
   
@@ -752,16 +726,13 @@ app.post('/api/user/profile', async (req, res) => {
           let data = {
             id: doc.id,
             name: doc.data().name,
-            name_slug: doc.data().name_slug,
             email: doc.data().email,
-            role: doc.data().role,
             profile_credential: doc.data().profile_credential,
             employment_credential: doc.data().employment_credential,
             education_credential: doc.data().education_credential,
             location_credential: doc.data().location_credential,
             description: doc.data().description,
             created_at: doc.data().created_at,
-            updated_at: doc.data().updated_at
           }
 
           res.status(200).json({
@@ -809,7 +780,6 @@ app.put('/api/user/credentials', async (req, res) => {
       employment_credential: req_employment,
       education_credential: req_education,
       location_credential: req_location,
-      updated_at: Timestamp.now()
     }
 
     const user = db.collection('users').doc(req_user_id)
@@ -862,7 +832,6 @@ app.put('/api/user', async (req, res) => {
         name_slug: slugify(req_name),
         description: req_description,
         profile_credential: req_profile_credential,
-        updated_at: Timestamp.now()
       }
   
       const user = db.collection('users').doc(req_user_id)
@@ -891,6 +860,113 @@ app.put('/api/user', async (req, res) => {
     })
 
   }
+})
+
+//create topics
+app.post('/api/topics', async (req, res) => {
+
+  try{
+
+    let req_topic = req.body.topic
+    let user_id = req.body.user_id
+
+    if(!req_topic ){
+
+      res.status(401).json({
+        success: false,
+        message: "Topic field is required.",
+      })
+
+    }else{
+
+      const topicsRef = db.collection('topics')
+      const topics = await topicsRef.where('topic', '==', req_topic).limit(1).get()
+  
+      if(!topics.empty){
+        
+        res.status(403).json({
+          success: false,
+          message: "A topic with the same title has already been created.",
+        })
+  
+      }else{
+  
+        const data = {
+          topic: req_topic,
+          created_at: Timestamp.now(),
+          user_id: user_id
+        }
+    
+        db.collection('topics').add(data)
+         
+        res.status(200).json({
+          success: true,
+          message: "Create topic success.",
+        })
+  
+      }
+
+    }
+
+  }catch(err){
+
+    res.status(500).json({
+      success: false,
+      message: "Create topic failed (" + err.message + ")."
+    })
+
+  }
+})
+
+//get topic by user_id
+app.post('/api/user/topics', async (req, res) => {
+
+  try {
+
+    let user_id = req.body.user_id
+
+    if(!user_id){
+
+      res.status(404).json({
+        success: false,
+        message: "User id is required."
+      })
+
+    }else {
+
+      const topicsRef = db.collection('topics')
+      const topics = await topicsRef.where('user_id', '==', user_id).get()
+
+      topicsArray = []
+
+      topics.forEach(doc => {
+          const data = {
+            id: doc.id,
+            user_id: doc.data().id,
+            topic: doc.data().topic,
+            created_at: doc.data().created_at,
+          }
+
+          topicsArray.push(data)
+      })
+
+      res.status(200).json({
+        success: true,
+        message: "Get user topics succes",
+        data: topicsArray
+      })
+
+    }
+    
+  } catch (err) {
+
+    res.status(500).json({
+      success: false,
+      message: "Get user topics failed"
+    })
+
+  }
+
 })
 
 app.listen(port, () => {

@@ -59,7 +59,7 @@
 						</a>
 						<div class="mx-2">
 							<a type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<img src="https://ui-avatars.com/api/?name=IZ"
+								<img id="avatar"
 								class="rounded-pill" height="30" alt="Profile"loading="lazy"/>
 							</a>
 							<div class="dropdown-menu-end position-absolute">
@@ -120,6 +120,8 @@
 
 		let user_id = sessionStorage.getItem('id')
 		let listQuestions = document.getElementById('listQuestions')
+		document.getElementById('avatar').src = 'https://ui-avatars.com/api/?name=' + sessionStorage.getItem('name')
+
 
 		async function getUserTopics()
 		{

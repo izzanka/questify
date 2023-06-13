@@ -346,8 +346,9 @@
                   <i class="bi bi-pencil-square btn btn-sm" data-bs-toggle="modal" data-bs-target="#addTopic"></i>
               </div>
               <div class="modal fade" id="addTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <form>
                 <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <form>
+
                   <div class="modal-content">
                   <div class="modal-header">
                     <b class="fs-5">Topics you know about</b>
@@ -368,8 +369,8 @@
                     <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelTopic">Cancel</button>
                     <button type="button" class="btn btn-primary btn-sm rounded-4" id="addTopicBtn">Add</button>
                   </div>
+                  </form>
                 </div>
-                </form>
                 </div>
               </div>
             </div>
@@ -501,7 +502,6 @@
 
         }catch(err)
         {
-          alert('Something wrong. please try again later!')
           console.log(err.message)
         }
 

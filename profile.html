@@ -346,6 +346,7 @@
                   <i class="bi bi-pencil-square btn btn-sm" data-bs-toggle="modal" data-bs-target="#addTopic"></i>
               </div>
               <div class="modal fade" id="addTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <form>
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                   <div class="modal-content">
                   <div class="modal-header">
@@ -357,7 +358,7 @@
                       <b>Topic</b><br>
                       <small>Topics are how Questify knows what questions to send your way. Be as comprehensive and spesific as possible to get the most relevant questions.</small>
                     </label>
-                    <input type="text" class="form-control" id="topic">
+                    <input type="text" class="form-control" id="topic" name="topic">
                     <div class="text-danger" id="invalid_topic" style="display: none;">
                       <small id="invalid_msg_topic">
                       </small>
@@ -365,37 +366,19 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelTopic">Cancel</button>
-                    <button type="button" class="btn btn-primary btn-sm rounded-4" id="btnTopic">Add</button>
+                    <button type="button" class="btn btn-primary btn-sm rounded-4" id="addTopicBtn">Add</button>
                   </div>
-                  </div>
+                </div>
+                </form>
                 </div>
               </div>
             </div>
             <hr>
-            <div class="row mt-1">
-              <div class="col-1 me-2">
-                  <div class="text-end">
-                      <img src="https://ui-avatars.com/api/?name=SE" class="rounded-circle" width="35px">
-                  </div>
-              </div>
-              <div class="col-9">
-                  <div class="text-start">
-                      <button class="btn btn-sm text-secondary">Software Engineers</button>
-                  </div>
-              </div>
-          </div>
-          <div class="row mt-3 mb-4">
-              <div class="col-1 me-2">
-                  <div class="text-end">
-                      <img src="https://ui-avatars.com/api/?name=E" class="rounded-circle" width="35px">
-                  </div>
-              </div>
-              <div class="col-9">
-                  <div class="text-start">
-                      <button class="btn btn-sm text-secondary">English (language)</button>
-                  </div>
-              </div>
-          </div>
+            <div id="topicsUser">
+
+            </div>
+ 
+          
           </div>
         </div>
     	</div>
@@ -410,11 +393,11 @@
       let user_id = sessionStorage.getItem('id')
       let updateProfileBtn = document.getElementById('updateProfileBtn')
       let updateCredentialsBtn = document.getElementById('updateCredentialsBtn')
+      let addTopicBtn = document.getElementById('addTopicBtn')
 
       async function getUserById()
       {
         try{
-
 
         const res = await fetch('http://localhost:3000/api/user/profile', {
           method: 'POST',
@@ -574,6 +557,102 @@
 
       }
 
+      async function getUserTopics()
+      {
+        try{
+
+        const res = await fetch('http://localhost:3000/api/user/topics', {
+          method: 'POST',
+          body: JSON.stringify({
+              user_id: user_id,
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await res.json()
+
+        if(res.status != 200){
+
+          alert(data.message)
+
+        }else{
+
+          let result = data.data;
+
+          dataStore = ""
+
+          result.forEach(element => {
+          
+            dataStore += 
+            `
+            <div class="row mt-3">
+              <div class="col-1 me-2">
+                  <div class="text-end">
+                      <img src="https://ui-avatars.com/api/?name=${element.topic}" class="rounded-circle" width="35px">
+                  </div>
+              </div>
+              <div class="col-9">
+                  <div class="text-start">
+                      <button class="btn btn-sm text-secondary">${element.topic}</button>
+                  </div>
+              </div>
+            </div>
+            `
+          })
+
+          document.getElementById('topicsUser').innerHTML = dataStore
+
+        }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+      }
+
+      addTopicBtn.addEventListener('click', async (e) => {
+
+        e.preventDefault()
+
+        let topic = document.getElementById('topic').value
+
+        try{
+
+          const res = await fetch('http://localhost:3000/api/topics', {
+            method: 'POST',
+            body: JSON.stringify({
+              user_id: user_id,
+              topic: topic
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status != 200){
+
+            alert(data.message)
+
+          }else{
+            
+            alert(data.message)
+            window.location.reload()
+
+          }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+
+      })
+
       updateProfileBtn.addEventListener('click', async (e) => {
 
         e.preventDefault()
@@ -667,6 +746,7 @@
       getUserById()
       getUserQuestions()
       getUserAnswers()
+      getUserTopics()
 
     </script>
 

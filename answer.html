@@ -105,30 +105,9 @@
                             <b>Topics you know about</b>
                         </small>
                         <hr>
-                        <div class="row mt-3">
-                            <div class="col-1 me-2">
-                                <div class="text-end">
-                                    <img src="https://ui-avatars.com/api/?name=SE" class="rounded-circle" width="35px">
-                                </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="text-start">
-                                    <button class="btn btn-sm text-secondary">Software Engineers</button>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="row mt-3">
-                            <div class="col-1 me-2">
-                                <div class="text-end">
-                                    <img src="https://ui-avatars.com/api/?name=E" class="rounded-circle" width="35px">
-                                </div>
-                            </div>
-                            <div class="col-9">
-                                <div class="text-start">
-                                    <button class="btn btn-sm text-secondary">English (language)</button>
-                                </div>
-                            </div>
-                        </div>
+						<div id="topicsUser">
+
+						</div>
 	    			</div>
 	    		</div>
     		</div>
@@ -141,6 +120,62 @@
 
 		let user_id = sessionStorage.getItem('id')
 		let listQuestions = document.getElementById('listQuestions')
+
+		async function getUserTopics()
+		{
+			try{
+
+			const res = await fetch('http://localhost:3000/api/user/topics', {
+			method: 'POST',
+			body: JSON.stringify({
+				user_id: user_id,
+			}),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+			})
+
+			const data = await res.json()
+
+			if(res.status != 200){
+
+			alert(data.message)
+
+			}else{
+
+			let result = data.data;
+
+			dataStore = ""
+
+			result.forEach(element => {
+			
+				dataStore += 
+				`
+				<div class="row mt-3">
+					<div class="col-1 me-2">
+						<div class="text-end">
+							<img src="https://ui-avatars.com/api/?name=${element.topic}" class="rounded-circle" width="35px">
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="text-start">
+							<button class="btn btn-sm text-secondary">${element.topic}</button>
+						</div>
+					</div>
+                </div>
+				`
+			})
+
+			document.getElementById('topicsUser').innerHTML = dataStore
+
+			}
+
+			}catch(err)
+			{
+			alert('Something wrong. please try again later!')
+			console.log(err.message)
+			}
+		}
 
 		async function getQuestions()
 		{
@@ -204,7 +239,8 @@
 			}
 		}
 
-		getQuestions();
+		getQuestions()
+		getUserTopics()
 
 	</script>
 

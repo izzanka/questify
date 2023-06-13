@@ -81,22 +81,9 @@
     						<button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#createSpaceModal"><i class="bi bi-plus-circle"></i> Create Space</button>
     					</div>
 						
-    					<div class="row mt-3">
-							<div class="col-2">
-								<img src="https://ui-avatars.com/api/?name=SE" class="rounded-circle" width="35px">
-							</div>
-							<div class="col-10 text-end">
-								<button class="btn btn-sm text-secondary">Software Engineers</button>
-							</div>
-    					</div>
-    				<div class="row mt-3">
-    					<div class="col-2">
-    						<img src="https://ui-avatars.com/api/?name=EN" class="rounded-circle" width="35px">
-    					</div>
-    					<div class="col-10 text-end">
-    						<button class="btn btn-sm text-secondary">English (language)</button>
-    					</div>
-    				</div>
+    					<div id="topicsUser">
+
+						</div>
     				<hr>
     				<div class="mt-2">
     					<div class="text-secondary">
@@ -334,6 +321,58 @@
 
 		});
 
+		async function getUserTopics()
+		{
+			try{
+
+			const res = await fetch('http://localhost:3000/api/user/topics', {
+			method: 'POST',
+			body: JSON.stringify({
+				user_id: user_id,
+			}),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+			})
+
+			const data = await res.json()
+
+			if(res.status != 200){
+
+			alert(data.message)
+
+			}else{
+
+			let result = data.data;
+
+			dataStore = ""
+
+			result.forEach(element => {
+			
+				dataStore += 
+				`
+				<div class="row mt-3">
+					<div class="col-2">
+						<img src="https://ui-avatars.com/api/?${element.topic}" class="rounded-circle" width="35px">
+					</div>
+					<div class="col-10 text-end">
+						<button class="btn btn-sm text-secondary">${element.topic}</button>
+					</div>
+    			</div>
+				`
+			})
+
+			document.getElementById('topicsUser').innerHTML = dataStore
+
+			}
+
+			}catch(err)
+			{
+			alert('Something wrong. please try again later!')
+			console.log(err.message)
+			}
+		}
+
 		async function getAllQuestionsWithAnswer()
 		{
 			try{
@@ -428,6 +467,7 @@
 		}
 
 		getAllQuestionsWithAnswer()
+		getUserTopics()
 
 	</script>
 

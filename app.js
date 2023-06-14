@@ -548,6 +548,7 @@ app.put('/api/question', async (req, res) => {
   try{
 
     let id = req.body.id
+    let user_id = req.body.user_id
     let req_question = req.body.question
 
     if(!req_question){
@@ -563,29 +564,45 @@ app.put('/api/question', async (req, res) => {
         question: req_question,
       }
   
-      const question1 = db.collection('questions').doc(id)
+      const question = db.collection('questions').doc(id)
   
-      if(question1.empty){
+      if(question.empty){
+
         res.status(404).json({
           success: false,
           message: "Question not found."
         })
+
+      }else{
+
+        const checkQuestion = await db.collection('questions').doc(id).get()
+
+        if(checkQuestion.data().user_id != user_id)
+        {
+
+          res.status(403).json({
+            success: false,
+            message: "Cant update other user question."
+          })
+
+        }else{
+
+          await question.update(update)
+  
+          res.status(200).json({
+            success: true,
+            message: "Update question success.",
+          })
+
+        }
       }
-  
-      await question1.update(update)
-  
-      res.status(200).json({
-        success: true,
-        message: "Update question success.",
-      })
-      
     }
     
   }catch(err){
 
     res.status(500).json({
       success: false,
-      message: "Update question failed."
+      message: "Update question failed ( " + err.message + " )."
     })
 
   }
@@ -604,14 +621,29 @@ app.delete('/api/question/delete', async (req, res) => {
         success: false,
         message: "Question not found."
       })
+    }else {
+
+      const checkQuestion = await db.collection('questions').doc(id).get()
+
+      if(checkQuestion.data().user_id != user_id)
+      {
+        
+        res.status(403).json({
+          success: false,
+          message: "Cant delete other user question."
+        })
+
+      }else {
+
+        await question.delete()
+
+        res.status(200).json({
+          success: true,
+          message: "Delete question success.",
+        })
+
+      }
     }
-
-    await question.delete()
-
-    res.status(200).json({
-      success: true,
-      message: "Delete question success.",
-    })
 
   } catch (error) {
     

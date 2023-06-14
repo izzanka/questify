@@ -29,6 +29,12 @@ let btnAlertClose = document.getElementById('btnAlertClose')
 //     window.location.href = 'home.html'
 // })
 
+let user_id = sessionStorage.getItem('id')
+
+if(user_id != null){
+    window.location.href = "home.html"
+}
+
 btnAlertClose.addEventListener('click', function() {
     myAlert.classList.add('collapse')
 })

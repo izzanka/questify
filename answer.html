@@ -110,6 +110,9 @@
 		let listQuestions = document.getElementById('listQuestions')
 		document.getElementById('avatar').src = 'https://ui-avatars.com/api/?name=' + sessionStorage.getItem('name')
 
+		if(user_id == null){
+			window.location.href = "signin.html"
+		}
 
 		async function getUserTopics()
 		{

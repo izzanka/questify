@@ -384,6 +384,10 @@
       let updateCredentialsBtn = document.getElementById('updateCredentialsBtn')
       let addTopicBtn = document.getElementById('addTopicBtn')
 
+      if(user_id == null){
+			  window.location.href = "signin.html"
+		  }
+
       async function getUserById()
       {
         try{

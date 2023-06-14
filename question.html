@@ -99,6 +99,10 @@
 	let name = sessionStorage.getItem('name')
 	let user_profile_credential = sessionStorage.getItem('profile_credential')
 
+	if(user_id == null){
+		window.location.href = "signin.html"
+	}
+
 	document.getElementById('avatar').src = 'https://ui-avatars.com/api/?name=' + name
 	
 	let question_id = url.searchParams.get("id");
@@ -107,7 +111,6 @@
 	let answers = document.getElementById('answers')
 	let relatedQuestions = document.getElementById('related-questions')
 	
-
 	async function getQuestion()
 	{
 		try{
@@ -116,8 +119,10 @@
 			const data = await res.json()
 
 			if(res.status != 200){
+
 				alert(data.message)
 				window.location.href = 'answer.html'
+
 			}else{
 
 				dataStore = 
@@ -189,8 +194,56 @@
 						</div>
 					</div>
 				`
+
+				dataStoreN =
+		
+				`
+				<div class="card rounded-0">
+                        <div class="card-body">
+                            <b class="fs-5">
+								${data.data.question}
+							</b>
+                            <div class="row mt-3">
+                                <div class="col-7">
+                                    <button data-bs-toggle="modal" data-bs-target="#${data.data.id}" class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-pencil-square me-1"></i> Answer </button> </div>                               
+                            </div>
+                        </div>
+                    </div>
+					<div class="modal fade" id="${data.data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg">
+							<div class="modal-content">
+								<form>
+									<div class="modal-header">
+										<span class="fs-5"><b>${data.data.question}</b></span>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeAnswer"></button>
+									</div>
+									<div class="modal-body">
+										<label class="form-label">
+											<b>Answer</b><br>
+											<small>Write your answer</small>
+										</label>
+										<input type="hidden" value="${data.data.id}" name="question_id">
+										<textarea type="text" class="form-control" id="answer" name="answer"></textarea>
+										<div class="text-danger" id="invalid_answer" style="display: none;">
+											<small id="invalid_msg_answer">
+											</small>
+										</div>	
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelAnswer">Cancel</button>
+										<button type="button" class="btn btn-primary btn-sm rounded-4" id="btnPostAnswer">Post</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				`
 				
-				question.innerHTML = dataStore
+				if(data.data.user_id == user_id){
+					question.innerHTML = dataStore
+				}else{
+					question.innerHTML = dataStoreN
+				}
 
 				document.getElementById('questionEdit').value = data.data.question
 
@@ -264,6 +317,7 @@
 							method: 'PUT',
 							body: JSON.stringify({
 								id: idQuestion.value,
+								user_id: user_id,
 								question: editedQuestion.value,
 							}),
 							headers: {
@@ -365,7 +419,6 @@
 		
 		catch(err)
 		{
-			alert('Something wrong. please try again later!')
 			console.log(err.message)
 		}
 	}

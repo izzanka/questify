@@ -287,6 +287,60 @@ app.post('/api/questions/limit/:limit', async (req, res) => {
 
 })
 
+//get other question
+app.post('/api/questions/other', async (req, res) => {
+
+  try {
+
+    let question = req.body.question
+    
+    const questionsRef = db.collection('questions')
+    const questions = await questionsRef.where('question', '!=', question).limit(5).get()
+
+    const questionsArray = [] 
+
+    if(questions.empty){
+      
+      res.status(200).json({
+        success: true,
+        message: "No ther questions.",
+        data: null
+      })
+
+    }else{
+
+      questions.forEach(async doc => {
+
+        const data = {
+          id: doc.id,
+          question: doc.data().question,
+          created_at: doc.data().created_at,
+        }
+
+        questionsArray.push(data)
+
+      })
+
+      res.status(200).json({
+        success: true,
+        message: "Get other questions success.",
+        data: questionsArray,
+      })
+
+      }
+    
+
+  } catch (err) {
+
+    res.status(500).json({
+      success: false,
+      message: "Get other question failed (" + err.message + ")."
+    })
+
+  }
+
+})
+
 //get single question with answers
 app.get('/api/question/:id', async (req, res) => {
 

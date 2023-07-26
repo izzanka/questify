@@ -1,0 +1,17 @@
+.notif-profile-m {
+    display: block;
+}
+
+.notif-profile-d {
+    display: none;
+}
+
+@media only screen and (min-width: 992px) {
+    .notif-profile-m {
+        display: none;
+    }
+    
+    .notif-profile-d {
+        display: flex;
+    }
+}

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
+  integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+  <!-- Bootstrap 1 Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+<!-- Font Awesome Icons CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="asset/css/navbar.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+		<div class="container">
+			<a class="navbar-brand" href="home.html">
+				<b class="text-danger fs-5">Questify</b>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item me-1">
+						<a class="nav-link" aria-current="page" href="home.html"><i class="bi bi-house-door"></i> Home</a>
+					</li>
+					<li class="nav-item me-1">
+						<a class="nav-link" aria-current="page" href="answer.html"><i class="bi bi-pencil-square"></i> Answer</a>
+					</li>
+					<div class="notif-profile-m">
+						<li class="nav-item">
+							<a class="nav-link text-danger" aria-current="page" href="#"><i class="bi bi-person-circle"></i> Profile</a>
+						</li>
+						<hr>
+						<li class="nav-item">
+							<a class="btn btn-danger btn-sm w-100 rounded-4" aria-current="page" href="signin.html">Logout</a>
+						</li>
+					</div>
+					<div class="notif-profile-d align-items-center">
+						<div class="mx-2">
+							<a type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img id="avatar2"
+								class="rounded-pill" height="30" alt="Profile"loading="lazy"/>
+							</a>
+							<div class="dropdown-menu-end position-absolute">
+								<ul class="dropdown-menu position-relative">
+									<li><a class="dropdown-item" href="profile.html">Profile</a></li>
+									<li><a class="dropdown-item" href="signin.html">Logout</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <main class="mt-3">
+    	<div class="container">
+        <div class="row">
+          <div class="col-md-7 col-lg-7 col-sm-12 mt-2">
+            <div class="row">
+              <div class="col-2 mt-2">
+                <img class="rounded-circle" width="100%" id="avatar1">
+              </div>
+              <div class="col-10">
+                <div class="row">
+                  <div class="col-12">
+                    <b class="fs-3 me-1" id="user-name">
+
+                    </b> 
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#editProfile" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                      <small class="text-secondary">Edit Profile</small>
+                    </a>
+                    <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <form>
+      
+                            <div class="modal-header">
+                              <b class="fs-5">Edit Profile</b>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeCredential"></button>
+                            </div>
+                            <div class="modal-body">
+                              <label class="form-label">
+                                <b>Name</b><br>
+                               
+                              </label>
+                              <input type="text" class="form-control" id="name" name="name">
+                              <div class="text-danger" id="invalid_position" style="display: none;">
+                                <small id="invalid_msg_position">
+                                </small>
+                            </div>	
+                              
+                              <label class="form-label mt-3">
+                                  <b>Profile Credential</b><br>
+                              </label>
+                              <input type="text" class="form-control" id="profile_credential" name="profile_credential">
+                              <div class="text-danger" id="invalid_school" style="display: none;">
+                                <small id="invalid_msg_school">
+                                </small>
+                            </div>	
+      
+                              <label class="form-label mt-3">
+                                <b>Description</b><br>
+                              </label>
+                              <input type="text" class="form-control" id="description" name="description">
+                              <div class="text-danger" id="invalid_location" style="display: none;">
+                                <small id="invalid_msg_location">
+                                </small>
+                            </div>	
+      
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelCredential">Cancel</button>
+                              <button type="submit" class="btn btn-primary btn-sm rounded-4" id="updateProfileBtn">Save</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="modal fade" id="editNameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                          <div class="modal-content">
+                            <form>
+                              <div class="modal-header">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <b class="fs-5">Edit Name</b>
+                                  </div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeName"></button>
+                              </div>
+                              <div class="modal-body">
+                                <label class="form-label">
+                                  <b>Name</b>
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name">
+                                <div class="text-danger" id="invalid_name" style="display: none;">
+                                  <small id="invalid_msg_name">
+                                  </small>
+                              </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelName">Cancel</button>
+                                <button type="submit" class="btn btn-primary btn-sm rounded-4" id="updateProfileBtn">Done</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="mt-1">
+                  <span class="fs-6 me-1" id="credential">
+                    
+                  </span>
+                  <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#editCredentialModal" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                    <small class="text-secondary">Edit</small></a>
+                    <div class="modal fade" id="editCredentialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <form onsubmit="return false">
+                            <div class="modal-header">
+                              <b class="fs-5">Edit Profile Credential</b>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeProfileCredential"></button>
+                            </div>
+                            <div class="modal-body">
+                              <label class="form-label">
+                                <b>Profile Credential</b>
+                                <br>
+                                <small>Credential add credibility to your content</small>
+                              </label>
+                              <input type="text" class="form-control" id="profile_credential" name="profile_credential">
+                              <div class="text-danger" id="invalid_profile_credential" style="display: none;">
+                                <small id="invalid_msg_profile_credential">
+                                </small>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelProfileCredential">Cancel</button>
+                              <button type="submit" class="btn btn-primary btn-sm rounded-4" id="btnProfileCredential">Save</button>
+                            </div>
+                          </form>
+                          </div>
+                      </div>
+                    </div> -->
+                </div>
+                <div class="mt-2">
+                </div>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="text-secondary" id="user-desc">
+               
+              </div>
+              <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#editDescModal" class="mt-2 link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline-dark link-underline-opacity-75-hover">
+                <small class="text-secondary">Edit</small></a>
+                <div class="modal fade" id="editDescModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <form onsubmit="return false">
+                      <div class="modal-header">
+                        <b class="fs-5">Edit Description</b>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeDescription"></button>
+                      </div>
+                      <div class="modal-body">
+                        <label class="form-label">
+                          <b>Description</b>
+                          <br>
+                          <small>Write a description about yourself</small>
+                        </label>
+                        <input type="text" class="form-control" id="description">
+                        <div class="text-danger" id="invalid_description" style="display: none;">
+                          <small id="invalid_msg_description">
+                          </small>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelDescription">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-4" id="btnDescription">Update</button>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div> -->
+            </div>
+            <div class="mt-4 mb-5">
+              <span class="btn btn-sm text-secondary">List of Questions Asked</span>
+              <hr>
+              <div id="questionsUser">
+
+              </div>
+
+              <span class="btn btn-sm text-secondary mt-5">List of Questions Answered</span>
+              <hr>
+              <div id="answersUser">
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-1">
+
+          </div>
+          <div class="col-md-4 col-lg-4 mt-3">
+            <div class="row">
+              <div class="col-10">
+                Credentials & Highlights
+              </div>
+              <div class="col-2">
+                  <i class="bi bi-pencil-square btn btn-sm" data-bs-toggle="modal" data-bs-target="#editC&HModal"></i>
+              </div>
+              <div class="modal fade" id="editC&HModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <form>
+
+                      <div class="modal-header">
+                        <b class="fs-5">Edit Credentials & Highlights</b>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeCredential"></button>
+                      </div>
+                      <div class="modal-body">
+                        <label class="form-label">
+                          <b>Employment Credential</b><br>
+                          <small>Position</small>
+                        </label>
+                        <input type="text" class="form-control" id="employmentCredential" name="employmentCredential">
+                        <div class="text-danger" id="invalid_position" style="display: none;">
+                          <small id="invalid_msg_position">
+                          </small>
+                      </div>	
+                        
+                        <label class="form-label mt-3">
+                            <b>Education Credential</b><br>
+                            <small>School</small>
+                        </label>
+                        <input type="text" class="form-control" id="educationCredential" name="educationCredential">
+                        <div class="text-danger" id="invalid_school" style="display: none;">
+                          <small id="invalid_msg_school">
+                          </small>
+                      </div>	
+
+                        <label class="form-label mt-3">
+                          <b>Location Credential</b><br>
+                          <small>Location</small>
+                        </label>
+                        <input type="text" class="form-control" id="locationCredential" name="locationCredential">
+                        <div class="text-danger" id="invalid_location" style="display: none;">
+                          <small id="invalid_msg_location">
+                          </small>
+                      </div>	
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelCredential">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-4" id="updateCredentialsBtn">Save</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div>
+              <i class="bi bi-briefcase me-2"></i> <span id="employmentC"></span> 
+            </div>
+            <div class="mt-3">
+              <i class="bi bi-building-check me-2"></i> <span id="educationC"></span>
+            </div>
+            <div class="mt-3">
+              <i class="bi bi-geo-alt me-2"></i><span id="locationC"></span>
+            </div>
+            <div class="mt-3">
+              <i class="bi bi-calendar-check me-2"></i> Joined <span id="created_at"></span>
+            </div>
+            <div class="row mt-5">
+              <div class="col-10">
+                Knows about
+              </div>
+              <div class="col-2">
+                  <i class="bi bi-pencil-square btn btn-sm" data-bs-toggle="modal" data-bs-target="#addTopic"></i>
+              </div>
+              <div class="modal fade" id="addTopic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <form>
+
+                  <div class="modal-content">
+                  <div class="modal-header">
+                    <b class="fs-5">Topics you know about</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeTopic"></button>
+                  </div>
+                  <div class="modal-body">
+                    <label class="form-label">
+                      <b>Topic</b><br>
+                      <small>Topics are how Questify knows what questions to send your way. Be as comprehensive and spesific as possible to get the most relevant questions.</small>
+                    </label>
+                    <input type="text" class="form-control" id="topic" name="topic">
+                    <div class="text-danger" id="invalid_topic" style="display: none;">
+                      <small id="invalid_msg_topic">
+                      </small>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelTopic">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm rounded-4" id="addTopicBtn">Add</button>
+                  </div>
+                  </form>
+                </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div id="topicsUser">
+
+            </div>
+ 
+          
+          </div>
+        </div>
+    	</div>
+    </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <script>
+
+      let user_id = sessionStorage.getItem('id')
+      let updateProfileBtn = document.getElementById('updateProfileBtn')
+      let updateCredentialsBtn = document.getElementById('updateCredentialsBtn')
+      let addTopicBtn = document.getElementById('addTopicBtn')
+
+      if(user_id == null){
+			  window.location.href = "signin.html"
+		  }
+
+      async function getUserById()
+      {
+        try{
+
+        const res = await fetch('http://localhost:3000/api/user/profile', {
+          method: 'POST',
+          body: JSON.stringify({
+              user_id: user_id,
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await res.json()
+
+        if(res.status != 200){
+
+          alert(data.message)
+          
+        }else{
+
+          let result = data.data
+
+          let name = result.name
+          let credential = result.profile_credential
+          let description = result.description
+
+          let employment_credential = result.employment_credential
+          let education_credential = result.education_credential
+          let location_credential = result.location_credential
+
+          document.getElementById('name').value = name
+          document.getElementById('profile_credential').value = credential
+          document.getElementById('description').value = description
+
+          document.getElementById('avatar1').src = 'https://ui-avatars.com/api/?name=' + name
+          document.getElementById('avatar2').src = 'https://ui-avatars.com/api/?name=' + name
+
+          //profile
+          document.getElementById('user-name').innerHTML = name
+          document.getElementById('credential').innerHTML = credential ? credential : '-'
+          document.getElementById('user-desc').innerHTML = description ? description : '-'
+
+          //credential
+          document.getElementById('employmentCredential').value = employment_credential 
+          document.getElementById('educationCredential').value = education_credential 
+          document.getElementById('locationCredential').value = location_credential 
+
+          document.getElementById('employmentC').innerHTML = employment_credential ? employment_credential : '-'
+          document.getElementById('educationC').innerHTML = education_credential ? education_credential : '-'
+          document.getElementById('locationC').innerHTML = location_credential ? location_credential : '-'
+          document.getElementById('created_at').innerHTML = new Date(result.created_at._seconds * 1000).toDateString()
+
+        }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+      }
+
+      async function getUserQuestions()
+      {
+        try{
+
+          const res = await fetch('http://localhost:3000/api/questions/user', {
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: user_id,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status != 200){
+
+            alert(data.message)
+
+          }else{
+
+            let result = data.data;
+
+            dataStore = ""
+
+            result.forEach(element => {
+            
+              dataStore += 
+              `
+              <div class="mt-3">
+                <a href="question.html?id=${element.id}" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline link-underline-opacity-75-hover">
+                  ${element.question}
+                </a>
+              </div>
+              `
+            })
+
+            document.getElementById('questionsUser').innerHTML = dataStore
+          }
+
+        }catch(err)
+        {
+          console.log(err.message)
+        }
+
+      }
+
+      async function getUserAnswers()
+      {
+        try{
+
+          const res = await fetch('http://localhost:3000/api/user/answers', {
+            method: 'POST',
+            body: JSON.stringify({
+                user_id: user_id,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status != 200){
+
+            alert(data.message)
+
+          }else{
+
+            let result = data.data;
+
+            dataStore = ""
+
+            result.forEach(element => {
+            
+              dataStore += 
+              `
+              <div class="mt-3">
+                <a href="question.html?id=${element.question_id}" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline link-underline-opacity-75-hover">
+                  ${element.answer}
+                </a>
+              </div>
+              `
+            })
+
+            document.getElementById('answersUser').innerHTML = dataStore
+
+          }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+
+      }
+
+      async function getUserTopics()
+      {
+        try{
+
+        const res = await fetch('http://localhost:3000/api/user/topics', {
+          method: 'POST',
+          body: JSON.stringify({
+              user_id: user_id,
+          }),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        })
+
+        const data = await res.json()
+
+        if(res.status != 200){
+
+          alert(data.message)
+
+        }else{
+
+          let result = data.data;
+
+          dataStore = ""
+
+          result.forEach(element => {
+          
+            dataStore += 
+            `
+            <div class="row mt-3">
+              <div class="col-2">
+                  <div class="text-end">
+                      <img src="https://ui-avatars.com/api/?name=${element.topic}" class="rounded-circle" width="35px">
+                  </div>
+              </div>
+              <div class="col-10 text-start">
+                      <button class="btn btn-sm text-secondary">${element.topic}</button>
+              </div>
+            </div>
+            `
+          })
+
+          document.getElementById('topicsUser').innerHTML = dataStore
+
+        }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+      }
+
+      addTopicBtn.addEventListener('click', async (e) => {
+
+        e.preventDefault()
+
+        let topic = document.getElementById('topic').value
+
+        try{
+
+          const res = await fetch('http://localhost:3000/api/topics', {
+            method: 'POST',
+            body: JSON.stringify({
+              user_id: user_id,
+              topic: topic
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status != 200){
+
+            alert(data.message)
+
+          }else{
+            
+            alert(data.message)
+            window.location.reload()
+
+          }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+
+      })
+
+      updateProfileBtn.addEventListener('click', async (e) => {
+
+        e.preventDefault()
+
+        let name = document.getElementById('name').value
+        let profile_credential = document.getElementById('profile_credential').value
+        let description = document.getElementById('description').value
+
+        try{
+
+          const res = await fetch('http://localhost:3000/api/user', {
+            method: 'PUT',
+            body: JSON.stringify({
+              user_id: user_id,
+              name: name,
+              profile_credential: profile_credential,
+              description: description,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status != 200){
+
+            alert(data.message)
+
+          }else{
+            
+            alert(data.message)
+            window.location.reload()
+
+          }
+
+        }catch(err)
+        {
+          alert('Something wrong. try again later!')
+          console.log(err.message)
+        }
+
+      })
+
+      updateCredentialsBtn.addEventListener('click', async (e) => {
+
+        e.preventDefault()
+
+        let employment_credential = document.getElementById('employmentCredential').value 
+        let education_credential = document.getElementById('educationCredential').value 
+        let location_credential = document.getElementById('locationCredential').value 
+
+       
+        try{
+
+          const res = await fetch('http://localhost:3000/api/user/credentials', {
+            method: 'PUT',
+            body: JSON.stringify({
+              user_id: user_id,
+              employment_credential: employment_credential,
+              education_credential: education_credential,
+              location_credential: location_credential,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+
+          const data = await res.json()
+
+          if(res.status != 200){
+
+            alert(data.message)
+
+          }else{
+
+            alert(data.message)
+            
+            window.location.reload()
+
+          }
+
+        }catch(err)
+        {
+          alert('Something wrong. please try again later!')
+          console.log(err.message)
+        }
+
+        })
+
+      getUserById()
+      getUserQuestions()
+      getUserAnswers()
+      getUserTopics()
+
+    </script>
+
+    <script src="asset/js/credential.js"></script>
+    <script src="asset/js/profile.js"></script>
+    <script src="asset/js/topic.js"></script>
+</body>
+</html>

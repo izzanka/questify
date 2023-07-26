@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Question</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <!-- Bootstrap 1 Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+	
+	<!-- Font Awesome Icons CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="asset/css/navbar.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+		<div class="container">
+			<a class="navbar-brand" href="home.html">
+				<b class="text-danger fs-5">Questify</b>
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item me-1">
+						<a class="nav-link" aria-current="page" href="home.html"><i class="bi bi-house-door"></i> Home</a>
+					</li>
+					<li class="nav-item me-1">
+						<a class="nav-link" aria-current="page" href="answer.html"><i class="bi bi-pencil-square"></i> Answer</a>
+					</li>
+					<div class="notif-profile-m">
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+						</li>
+						<hr>
+						<li class="nav-item">
+							<a class="btn btn-danger btn-sm w-100 rounded-4" aria-current="page" href="signin.html">Logout</a>
+						</li>
+					</div>
+					<div class="notif-profile-d align-items-center">
+						<div class="mx-2">
+							<a type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<img id="avatar"
+								class="rounded-pill" height="30" alt="Profile"loading="lazy"/>
+							</a>
+							<div class="dropdown-menu-end position-absolute">
+								<ul class="dropdown-menu position-relative">
+									<li><a class="dropdown-item" href="profile.html">Profile</a></li>
+									<li><a class="dropdown-item" href="signin.html">Logout</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <main class="mt-4">
+    	<div class="container">
+            <div class="row">
+                <div class="col-1 d-none d-sm-block">
+                </div>
+                <div class="col-md-7 col-sm-12 mb-4">
+					<div id="question">
+					</div>
+					<div id="answers">
+					</div>
+                </div>
+                <div class="col-md-4 d-none d-sm-block mb-4">
+                    <div class="position-sticky" style="top: 5rem;">
+                        <div class="card rounded-0">
+                            <div class="card-body">
+                                Other Questions
+                                <hr>
+								<div id="related-questions">
+
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    </main>
+
+	<script>
+
+	let url = new URL(window.location.href)
+
+	let user_id = sessionStorage.getItem('id')
+	let name = sessionStorage.getItem('name')
+	let user_profile_credential = sessionStorage.getItem('profile_credential')
+
+	if(user_id == null){
+		window.location.href = "signin.html"
+	}
+
+	document.getElementById('avatar').src = 'https://ui-avatars.com/api/?name=' + name
+	
+	let question_id = url.searchParams.get("id");
+
+	let question = document.getElementById('question')
+	let answers = document.getElementById('answers')
+	let relatedQuestions = document.getElementById('related-questions')
+	let question_title = null
+	
+	async function getQuestion()
+	{
+		try{
+			const res = await fetch('http://localhost:3000/api/question/' + question_id)
+
+			const data = await res.json()
+
+			if(res.status != 200){
+
+				alert(data.message)
+				window.location.href = 'answer.html'
+
+			}else{
+
+				question_title = data.data.question
+
+				const res2 = await fetch('http://localhost:3000/api/questions/other', {
+					method: 'POST',
+					body: JSON.stringify({
+						question: question_title,
+					}),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+
+				const data2 = await res2.json()
+
+				if(res2.status != 200){
+					
+					alert(data2.message)
+
+				}else{
+
+					let result2 = data2.data;
+
+					if(result2 == null){
+						relatedQuestions.innerHTML = 
+						`
+						<div class="text-center text-secondary">
+							<small>No other questions</small>
+						</div>
+						`
+					}
+
+					dataStore3 = ""
+
+					result2.forEach(element => {
+					
+						dataStore3 += 
+						`
+						<div class="mt-3">
+							<a href="question.html?id=${element.id}" class="link-offset-2 link-offset-3-hover link-underline-opacity-0 link-underline link-underline-opacity-75-hover">
+							${element.question}
+							</a>
+						</div>
+						`
+					})
+
+					relatedQuestions.innerHTML = dataStore3
+				}
+
+				let match 
+
+				if(data.data.user_id == user_id){
+					match = true
+				}else{
+					matach = false
+				}
+
+				dataStore = 
+				`
+				<div class="card rounded-0">
+                        <div class="card-body">
+                            <b class="fs-5">
+								${data.data.question}
+							</b>
+                            <div class="row mt-3">
+                                <div class="col-7">
+                                    <button data-bs-toggle="modal" data-bs-target="#${data.data.id}" class="btn btn-sm btn-outline-secondary rounded-4"><i class="bi bi-pencil-square me-1"></i> Answer </button> </div>
+                                <div class="col-5 text-end">
+                                    <button ${match ? '' : 'hidden'} class="btn btn-md" data-bs-toggle="modal" data-bs-target="#edit${data.data.id}" text-secondary"><i class="bi bi-three-dots"></i></button>
+                                </div>                                   
+                            </div>
+                        </div>
+                    </div>
+					<div class="modal fade" id="edit${data.data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg">
+							<div class="modal-content">
+								<form>
+									<div class="modal-header">
+										<span class="fs-5"><b>Edit question</b></span>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeAnswer"></button>
+									</div>
+									<div class="modal-body">
+										<input type="hidden" id="questionId" value="${data.data.id}">
+										<input type="text" class="form-control" id="questionEdit" name="question">
+										<div class="text-danger" id="invalid_question" style="display: none;">
+											<small id="invalid_msg_question">
+											</small>
+										</div>	
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary btn-sm rounded-4" id="btnEditQuestion">Edit</button>
+										<button type="button" class="btn btn-danger btn-sm rounded-4" id="btnDeleteQuestion">Delete</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="${data.data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg">
+							<div class="modal-content">
+								<form>
+									<div class="modal-header">
+										<span class="fs-5"><b>${data.data.question}</b></span>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeAnswer"></button>
+									</div>
+									<div class="modal-body">
+										<label class="form-label">
+											<b>Answer</b><br>
+											<small>Write your answer</small>
+										</label>
+										<input type="hidden" value="${data.data.id}" name="question_id">
+										<textarea type="text" class="form-control" id="answer" name="answer"></textarea>
+										<div class="text-danger" id="invalid_answer" style="display: none;">
+											<small id="invalid_msg_answer">
+											</small>
+										</div>	
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-sm btn-light rounded-4" data-bs-dismiss="modal" id="cancelAnswer">Cancel</button>
+										<button type="button" class="btn btn-primary btn-sm rounded-4" id="btnPostAnswer">Post</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				`
+
+				
+				
+				question.innerHTML = dataStore
+
+
+				document.getElementById('questionEdit').value = data.data.question
+
+				let result = data.data.answers
+				
+				dataStore2 = ''
+
+				result.forEach(element => {
+
+					dataStore2 += 
+
+					`
+					<div class="card mt-3 mb-3 rounded-0">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-1 mt-2 text-end">
+										<img src="https://ui-avatars.com/api/?name=${element.user_name}" class="rounded-circle" width="35px">
+									</div>
+									<div class="col-9">
+										<small class="ms-2"><b>${element.user_name}</b></small>
+										<div class="row">
+											<div class="col-12 ms-2">
+												<small class="text-secondary">${element.user_profile_credential}  &#x2022;  ${new Date(element.created_at._seconds * 1000).toDateString()}</small>  
+											</div>
+										</div>
+									</div>
+									<div class="col-2 text-end">
+									</div>
+								</div>
+								<div class="mt-3">
+									<div class="fs-6">
+										${element.answer}
+									</div>
+								</div>
+								<div class="mt-3">
+								</div>
+								<div class="row mt-3">					
+								</div>
+							</div>
+						</div>
+					`
+				})
+
+				answers.innerHTML = dataStore2
+
+				let btnEditQuestion = document.getElementById('btnEditQuestion')
+				let btnDeleteQuestion = document.getElementById('btnDeleteQuestion')
+				let editedQuestion = document.getElementById('questionEdit')
+				let idQuestion = document.getElementById('questionId')
+				let btnPostAnswer = document.getElementById('btnPostAnswer')
+
+				btnEditQuestion.addEventListener('click', async (e) => {
+
+					e.preventDefault()
+
+					try {
+						
+						const res = await fetch('http://localhost:3000/api/question', {
+							method: 'PUT',
+							body: JSON.stringify({
+								id: idQuestion.value,
+								user_id: user_id,
+								question: editedQuestion.value,
+							}),
+							headers: {
+								'Content-Type': 'application/json'
+							}
+						})
+
+						const data = await res.json()
+
+						if(res.status != 200){
+							alert(data.message)
+						}else{
+							alert(data.message)
+							location.href="question.html?id=" + idQuestion.value
+						}
+						
+
+					} catch (error) {
+						alert('Something wrong. please try again later!')
+						console.log(error.message)
+					}
+
+				})
+
+				btnDeleteQuestion.addEventListener('click', async (e) => {
+
+					e.preventDefault()
+
+					try {
+						
+						const res = await fetch('http://localhost:3000/api/question/delete', {
+							method: 'DELETE',
+							body: JSON.stringify({
+								id: idQuestion.value,
+								user_id: user_id,
+							}),
+							headers: {
+								'Content-Type': 'application/json'
+							}
+						})
+
+						const data = await res.json()
+
+						if(res.status != 200){
+							alert(data.message)
+						}else{
+							alert(data.message)
+							location.href= "home.html"
+						}
+						
+
+					} catch (error) {
+						alert('Something wrong. please try again later!')
+						console.log(error.message)
+					}
+
+				})
+
+				btnPostAnswer.addEventListener('click', async (e) => {
+
+					e.preventDefault()
+
+					let answer = document.getElementById('answer').value
+
+					try {
+						
+						const res = await fetch('http://localhost:3000/api/question/answer', {
+							method: 'POST',
+							body: JSON.stringify({
+								user_id: user_id,
+								user_name: name,
+								user_profile_credential: user_profile_credential,
+								question_id: idQuestion.value,
+								answer: answer
+							}),
+							headers: {
+								'Content-Type': 'application/json'
+							}
+						})
+
+						const data = await res.json()
+
+						if(res.status != 200){
+							alert(data.message)
+						}else{
+							alert(data.message)
+							window.location.reload()
+						}
+						
+
+					} catch (error) {
+						alert('Something wrong. please try again later!')
+						console.log(error.message)
+					}
+
+
+				})
+			}
+		}
+		
+		catch(err)
+		{
+			console.log(err.message)
+		}
+	}
+
+	getQuestion()
+
+	</script>
+
+	<script src="asset/js/answer.js"></script>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

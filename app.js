@@ -668,16 +668,29 @@ app.delete('/api/question/delete', async (req, res) => {
   try {
     
     const id = req.body.id
+    const user_id = req.body.user_id
     const question = db.collection('questions').doc(id)
 
     if(question.empty){
+
       res.status(404).json({
         success: false,
         message: "Question not found."
       })
+
     }else {
 
       const checkQuestion = await db.collection('questions').doc(id).get()
+
+      const answers = await db.collection('answers').where('question_id', '==', id).get()
+
+      if(!answers.empty){
+
+        answers.forEach(doc => {
+          console.log(doc.data().answer)
+        })
+
+      }
 
       if(checkQuestion.data().user_id != user_id)
       {
@@ -703,7 +716,7 @@ app.delete('/api/question/delete', async (req, res) => {
     
     res.status(500).json({
       success: false,
-      message: "Delete question failed."
+      message: "Delete question failed ( " + error.message + " )."
     })
 
   }
